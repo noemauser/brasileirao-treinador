@@ -1,5 +1,4 @@
-// Brasileirão v11.0 — emblemas oficiais via Transfermarkt CDN + fallback local
-// Unificado: noemauser/brasileirao-treinador
+// Brasileirão v11.1 — emblemas TM CDN fallback
 window.LOGO_TM = {
   abc: 7209,
   acg: 15172,
@@ -95,22 +94,13 @@ window.LOGO_TM = {
   ypi: 16869,
 };
 
-// Resolve logo URL: local first, then TM CDN crest
-window.logoUrl = function(clubId) {
-  const local = 'assets/img/logos/' + clubId + '.png';
-  const id = (window.LOGO_TM || {})[clubId];
-  if (!id) return local;
-  // Prefer local file; browsers load local; CDN as secondary via onerror in UI
-  return local;
-};
-
 window.logoCdnUrl = function(clubId) {
   const id = (window.LOGO_TM || {})[clubId];
   if (!id) return null;
   return 'https://tmssl.akamaized.net/images/wappen/head/' + id + '.png';
 };
 
-// Optional: patch club.logo at runtime if local fails
+// Se logo local falhar, tenta CDN do Transfermarkt
 document.addEventListener("error", function(e) {
   const t = e.target;
   if (!t || t.tagName !== 'IMG') return;

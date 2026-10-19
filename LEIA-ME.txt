@@ -1,14 +1,17 @@
-BRASILEIRÃO — TREINADOR  v11.0
-==============================
-Repositório único: https://github.com/noemauser/brasileirao-treinador
-
+BRASILEIRÃO — TREINADOR  v11.1 (pacote limpo)
+==============================================
 COMO JOGAR
-  Abra index.html no navegador (Chrome/Edge/Firefox).
-  Não precisa de internet para jogar (logos/faces locais).
+  Abra index.html no Chrome/Edge/Firefox.
+  Funciona offline (sem servidor).
+
+O QUE TEM
+  • 92 clubes (Séries A B C D)
+  • 92 logos oficiais
+  • 2212 faces de elenco (reais TM + avatars)
+  • Sem backups, amostras ou faces órfãs
 
 DRIVE
-  Mesma versão na pasta "Brasileirão" do Google Drive.
+  Pasta Brasileirão = esta versão.
 
-ATUALIZAR
-  git pull
-  ou baixe o ZIP mais recente do GitHub.
+GitHub (espelho)
+  https://github.com/noemauser/brasileirao-treinador

@@ -1,10 +1,10 @@
-/* Brasileirão v10.7 — Fase 4 torcida · notícias · lesões · canvas */
+/* Brasileirão v11.1 — limpo · faces elenco · logos oficiais · canvas */
 (() => {
 "use strict";
 const SAVE_KEY = "brasileirao_coach_v10";
 const SAVE_KEY_V9 = "brasileirao_coach_v9";
 const SAVE_KEY_OLD = "brasileirao_coach_v8";
-const VERSION = "10.7";
+const VERSION = "11.1";
 
 const $ = (s, el=document) => el.querySelector(s);
 const $$ = (s, el=document) => [...el.querySelectorAll(s)];
@@ -1334,7 +1334,7 @@ function showScreen(name) {
   });
   const el = document.getElementById(name);
   if (el) el.classList.add("active");
-  else console.warn("[Brasileirão] tela ausente:", name);
+  else { /* tela ausente */ }
   ui.screen = name;
 }
 
@@ -1363,7 +1363,7 @@ function renderCreate() {
   showScreen("createScreen");
   const box = $("#clubPick");
   const sel = $("#createSerie");
-  if (!box || !sel) { console.warn("[Brasileirão] createScreen incompleto"); return; }
+  if (!box || !sel) { return; }
   let serie = sel.value;
   if (serie !== "C" && serie !== "D") { serie = "D"; sel.value = "D"; }
   const list = DATA.clubs.filter(c => c.serie === serie).sort((a,b) => (b.rep||0) - (a.rep||0) || (b.ovr||0) - (a.ovr||0));

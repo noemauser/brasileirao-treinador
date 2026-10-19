@@ -1,12 +1,12 @@
 {
-  "version": 10.7,
-  "phase": 5,
+  "version": 11.1,
+  "phase": "audit-clean",
   "season_year": 2026,
   "totals": {
     "clubs": 92,
     "players": 2212,
-    "realFaces": 1467,
-    "avatarFaces": 745,
+    "realFaces": 1514,
+    "avatarFaces": 698,
     "logos": 92
   },
   "bySerie": {
@@ -17,8 +17,8 @@
     },
     "B": {
       "clubs": 20,
-      "real": 356,
-      "avatar": 104
+      "real": 403,
+      "avatar": 57
     },
     "C": {
       "clubs": 20,
@@ -40,7 +40,8 @@
       "squad": 29,
       "realFaces": 29,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cap.png"
+      "logo": "assets/img/logos/cap.png",
+      "players": 29
     },
     {
       "id": "cam",
@@ -50,7 +51,8 @@
       "squad": 26,
       "realFaces": 26,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cam.png"
+      "logo": "assets/img/logos/cam.png",
+      "players": 26
     },
     {
       "id": "bah",
@@ -60,7 +62,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/bah.png"
+      "logo": "assets/img/logos/bah.png",
+      "players": 28
     },
     {
       "id": "bot",
@@ -70,7 +73,8 @@
       "squad": 29,
       "realFaces": 29,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/bot.png"
+      "logo": "assets/img/logos/bot.png",
+      "players": 29
     },
     {
       "id": "cha",
@@ -80,7 +84,8 @@
       "squad": 29,
       "realFaces": 29,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cha.png"
+      "logo": "assets/img/logos/cha.png",
+      "players": 29
     },
     {
       "id": "cor",
@@ -90,7 +95,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cor.png"
+      "logo": "assets/img/logos/cor.png",
+      "players": 28
     },
     {
       "id": "cfc",
@@ -100,7 +106,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cfc.png"
+      "logo": "assets/img/logos/cfc.png",
+      "players": 28
     },
     {
       "id": "cru",
@@ -110,7 +117,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cru.png"
+      "logo": "assets/img/logos/cru.png",
+      "players": 28
     },
     {
       "id": "fla",
@@ -120,7 +128,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/fla.png"
+      "logo": "assets/img/logos/fla.png",
+      "players": 28
     },
     {
       "id": "flu",
@@ -130,7 +139,8 @@
       "squad": 29,
       "realFaces": 29,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/flu.png"
+      "logo": "assets/img/logos/flu.png",
+      "players": 29
     },
     {
       "id": "gre",
@@ -140,7 +150,8 @@
       "squad": 29,
       "realFaces": 29,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/gre.png"
+      "logo": "assets/img/logos/gre.png",
+      "players": 29
     },
     {
       "id": "int",
@@ -150,7 +161,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/int.png"
+      "logo": "assets/img/logos/int.png",
+      "players": 28
     },
     {
       "id": "mir",
@@ -160,7 +172,8 @@
       "squad": 26,
       "realFaces": 26,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/mir.png"
+      "logo": "assets/img/logos/mir.png",
+      "players": 26
     },
     {
       "id": "pal",
@@ -170,7 +183,8 @@
       "squad": 26,
       "realFaces": 26,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/pal.png"
+      "logo": "assets/img/logos/pal.png",
+      "players": 26
     },
     {
       "id": "rbb",
@@ -180,7 +194,8 @@
       "squad": 26,
       "realFaces": 26,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/rbb.png"
+      "logo": "assets/img/logos/rbb.png",
+      "players": 26
     },
     {
       "id": "rem",
@@ -190,7 +205,8 @@
       "squad": 26,
       "realFaces": 24,
       "fakeFaces": 2,
-      "logo": "assets/img/logos/rem.png"
+      "logo": "assets/img/logos/rem.png",
+      "players": 26
     },
     {
       "id": "san",
@@ -200,7 +216,8 @@
       "squad": 26,
       "realFaces": 25,
       "fakeFaces": 1,
-      "logo": "assets/img/logos/san.png"
+      "logo": "assets/img/logos/san.png",
+      "players": 26
     },
     {
       "id": "sao",
@@ -210,7 +227,8 @@
       "squad": 26,
       "realFaces": 26,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/sao.png"
+      "logo": "assets/img/logos/sao.png",
+      "players": 26
     },
     {
       "id": "vas",
@@ -220,7 +238,8 @@
       "squad": 26,
       "realFaces": 26,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/vas.png"
+      "logo": "assets/img/logos/vas.png",
+      "players": 26
     },
     {
       "id": "vit",
@@ -230,7 +249,8 @@
       "squad": 26,
       "realFaces": 22,
       "fakeFaces": 4,
-      "logo": "assets/img/logos/vit.png"
+      "logo": "assets/img/logos/vit.png",
+      "players": 26
     },
     {
       "id": "ame",
@@ -238,9 +258,10 @@
       "serie": "B",
       "tmId": 2863,
       "squad": 20,
-      "realFaces": 14,
+      "realFaces": 20,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/ame.png"
+      "logo": "assets/img/logos/ame.png",
+      "players": 20
     },
     {
       "id": "ath",
@@ -248,9 +269,10 @@
       "serie": "B",
       "tmId": 64918,
       "squad": 20,
-      "realFaces": 14,
+      "realFaces": 19,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/ath.png"
+      "logo": "assets/img/logos/ath.png",
+      "players": 20
     },
     {
       "id": "acg",
@@ -258,9 +280,10 @@
       "serie": "B",
       "tmId": 15172,
       "squad": 20,
-      "realFaces": 16,
+      "realFaces": 19,
       "fakeFaces": 4,
-      "logo": "assets/img/logos/acg.png"
+      "logo": "assets/img/logos/acg.png",
+      "players": 20
     },
     {
       "id": "ava",
@@ -268,9 +291,10 @@
       "serie": "B",
       "tmId": 2035,
       "squad": 20,
-      "realFaces": 15,
+      "realFaces": 19,
       "fakeFaces": 5,
-      "logo": "assets/img/logos/ava.png"
+      "logo": "assets/img/logos/ava.png",
+      "players": 20
     },
     {
       "id": "bsp",
@@ -278,9 +302,10 @@
       "serie": "B",
       "tmId": 9030,
       "squad": 20,
-      "realFaces": 7,
+      "realFaces": 16,
       "fakeFaces": 13,
-      "logo": "assets/img/logos/bsp.png"
+      "logo": "assets/img/logos/bsp.png",
+      "players": 20
     },
     {
       "id": "crb",
@@ -288,9 +313,10 @@
       "serie": "B",
       "tmId": 11449,
       "squad": 20,
-      "realFaces": 11,
+      "realFaces": 17,
       "fakeFaces": 9,
-      "logo": "assets/img/logos/crb.png"
+      "logo": "assets/img/logos/crb.png",
+      "players": 20
     },
     {
       "id": "cea",
@@ -300,7 +326,8 @@
       "squad": 22,
       "realFaces": 22,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/cea.png"
+      "logo": "assets/img/logos/cea.png",
+      "players": 22
     },
     {
       "id": "cri",
@@ -308,9 +335,10 @@
       "serie": "B",
       "tmId": 7178,
       "squad": 20,
-      "realFaces": 14,
+      "realFaces": 20,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/cri.png"
+      "logo": "assets/img/logos/cri.png",
+      "players": 20
     },
     {
       "id": "cui",
@@ -318,9 +346,10 @@
       "serie": "B",
       "tmId": 28022,
       "squad": 20,
-      "realFaces": 14,
+      "realFaces": 18,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/cui.png"
+      "logo": "assets/img/logos/cui.png",
+      "players": 20
     },
     {
       "id": "for",
@@ -330,7 +359,8 @@
       "squad": 22,
       "realFaces": 22,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/for.png"
+      "logo": "assets/img/logos/for.png",
+      "players": 22
     },
     {
       "id": "goi",
@@ -340,7 +370,8 @@
       "squad": 20,
       "realFaces": 10,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/goi.png"
+      "logo": "assets/img/logos/goi.png",
+      "players": 20
     },
     {
       "id": "juv",
@@ -350,7 +381,8 @@
       "squad": 28,
       "realFaces": 28,
       "fakeFaces": 0,
-      "logo": "assets/img/logos/juv.png"
+      "logo": "assets/img/logos/juv.png",
+      "players": 28
     },
     {
       "id": "lon",
@@ -358,9 +390,10 @@
       "serie": "B",
       "tmId": 1693,
       "squad": 26,
-      "realFaces": 23,
+      "realFaces": 25,
       "fakeFaces": 3,
-      "logo": "assets/img/logos/lon.png"
+      "logo": "assets/img/logos/lon.png",
+      "players": 26
     },
     {
       "id": "nov",
@@ -370,7 +403,8 @@
       "squad": 26,
       "realFaces": 25,
       "fakeFaces": 1,
-      "logo": "assets/img/logos/nov.png"
+      "logo": "assets/img/logos/nov.png",
+      "players": 26
     },
     {
       "id": "nau",
@@ -378,9 +412,10 @@
       "serie": "B",
       "tmId": 2646,
       "squad": 26,
-      "realFaces": 21,
+      "realFaces": 23,
       "fakeFaces": 5,
-      "logo": "assets/img/logos/nau.png"
+      "logo": "assets/img/logos/nau.png",
+      "players": 26
     },
     {
       "id": "ope",
@@ -390,7 +425,8 @@
       "squad": 26,
       "realFaces": 25,
       "fakeFaces": 1,
-      "logo": "assets/img/logos/ope.png"
+      "logo": "assets/img/logos/ope.png",
+      "players": 26
     },
     {
       "id": "pon",
@@ -400,7 +436,8 @@
       "squad": 26,
       "realFaces": 14,
       "fakeFaces": 12,
-      "logo": "assets/img/logos/pon.png"
+      "logo": "assets/img/logos/pon.png",
+      "players": 26
     },
     {
       "id": "spt",
@@ -410,7 +447,8 @@
       "squad": 26,
       "realFaces": 21,
       "fakeFaces": 5,
-      "logo": "assets/img/logos/spt.png"
+      "logo": "assets/img/logos/spt.png",
+      "players": 26
     },
     {
       "id": "sbe",
@@ -420,7 +458,8 @@
       "squad": 26,
       "realFaces": 19,
       "fakeFaces": 7,
-      "logo": "assets/img/logos/sbe.png"
+      "logo": "assets/img/logos/sbe.png",
+      "players": 26
     },
     {
       "id": "vil",
@@ -430,7 +469,8 @@
       "squad": 26,
       "realFaces": 21,
       "fakeFaces": 5,
-      "logo": "assets/img/logos/vil.png"
+      "logo": "assets/img/logos/vil.png",
+      "players": 26
     },
     {
       "id": "amz",
@@ -440,7 +480,8 @@
       "squad": 26,
       "realFaces": 17,
       "fakeFaces": 9,
-      "logo": "assets/img/logos/amz.png"
+      "logo": "assets/img/logos/amz.png",
+      "players": 26
     },
     {
       "id": "ana",
@@ -450,7 +491,8 @@
       "squad": 26,
       "realFaces": 12,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/ana.png"
+      "logo": "assets/img/logos/ana.png",
+      "players": 26
     },
     {
       "id": "bar",
@@ -460,7 +502,8 @@
       "squad": 26,
       "realFaces": 13,
       "fakeFaces": 13,
-      "logo": "assets/img/logos/bar.png"
+      "logo": "assets/img/logos/bar.png",
+      "players": 26
     },
     {
       "id": "bpb",
@@ -470,7 +513,8 @@
       "squad": 26,
       "realFaces": 21,
       "fakeFaces": 5,
-      "logo": "assets/img/logos/bpb.png"
+      "logo": "assets/img/logos/bpb.png",
+      "players": 26
     },
     {
       "id": "bru",
@@ -480,7 +524,8 @@
       "squad": 26,
       "realFaces": 16,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/bru.png"
+      "logo": "assets/img/logos/bru.png",
+      "players": 26
     },
     {
       "id": "cax",
@@ -490,7 +535,8 @@
       "squad": 23,
       "realFaces": 21,
       "fakeFaces": 2,
-      "logo": "assets/img/logos/cax.png"
+      "logo": "assets/img/logos/cax.png",
+      "players": 23
     },
     {
       "id": "con",
@@ -500,7 +546,8 @@
       "squad": 26,
       "realFaces": 16,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/con.png"
+      "logo": "assets/img/logos/con.png",
+      "players": 26
     },
     {
       "id": "fer",
@@ -510,7 +557,8 @@
       "squad": 26,
       "realFaces": 19,
       "fakeFaces": 7,
-      "logo": "assets/img/logos/fer.png"
+      "logo": "assets/img/logos/fer.png",
+      "players": 26
     },
     {
       "id": "fig",
@@ -520,7 +568,8 @@
       "squad": 26,
       "realFaces": 20,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/fig.png"
+      "logo": "assets/img/logos/fig.png",
+      "players": 26
     },
     {
       "id": "flo",
@@ -530,7 +579,8 @@
       "squad": 24,
       "realFaces": 14,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/flo.png"
+      "logo": "assets/img/logos/flo.png",
+      "players": 24
     },
     {
       "id": "gua",
@@ -540,7 +590,8 @@
       "squad": 23,
       "realFaces": 16,
       "fakeFaces": 7,
-      "logo": "assets/img/logos/gua.png"
+      "logo": "assets/img/logos/gua.png",
+      "players": 23
     },
     {
       "id": "ili",
@@ -550,7 +601,8 @@
       "squad": 24,
       "realFaces": 12,
       "fakeFaces": 12,
-      "logo": "assets/img/logos/ili.png"
+      "logo": "assets/img/logos/ili.png",
+      "players": 24
     },
     {
       "id": "ita",
@@ -560,7 +612,8 @@
       "squad": 24,
       "realFaces": 10,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/ita.png"
+      "logo": "assets/img/logos/ita.png",
+      "players": 24
     },
     {
       "id": "itu",
@@ -570,7 +623,8 @@
       "squad": 24,
       "realFaces": 13,
       "fakeFaces": 11,
-      "logo": "assets/img/logos/itu.png"
+      "logo": "assets/img/logos/itu.png",
+      "players": 24
     },
     {
       "id": "mar",
@@ -580,7 +634,8 @@
       "squad": 24,
       "realFaces": 5,
       "fakeFaces": 19,
-      "logo": "assets/img/logos/mar.png"
+      "logo": "assets/img/logos/mar.png",
+      "players": 24
     },
     {
       "id": "mga",
@@ -590,7 +645,8 @@
       "squad": 24,
       "realFaces": 10,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/mga.png"
+      "logo": "assets/img/logos/mga.png",
+      "players": 24
     },
     {
       "id": "pay",
@@ -600,7 +656,8 @@
       "squad": 24,
       "realFaces": 20,
       "fakeFaces": 4,
-      "logo": "assets/img/logos/pay.png"
+      "logo": "assets/img/logos/pay.png",
+      "players": 24
     },
     {
       "id": "scr",
@@ -610,7 +667,8 @@
       "squad": 24,
       "realFaces": 18,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/scr.png"
+      "logo": "assets/img/logos/scr.png",
+      "players": 24
     },
     {
       "id": "vor",
@@ -620,7 +678,8 @@
       "squad": 24,
       "realFaces": 19,
       "fakeFaces": 5,
-      "logo": "assets/img/logos/vor.png"
+      "logo": "assets/img/logos/vor.png",
+      "players": 24
     },
     {
       "id": "ypi",
@@ -630,7 +689,8 @@
       "squad": 24,
       "realFaces": 16,
       "fakeFaces": 8,
-      "logo": "assets/img/logos/ypi.png"
+      "logo": "assets/img/logos/ypi.png",
+      "players": 24
     },
     {
       "id": "abc",
@@ -640,7 +700,8 @@
       "squad": 24,
       "realFaces": 16,
       "fakeFaces": 8,
-      "logo": "assets/img/logos/abc.png"
+      "logo": "assets/img/logos/abc.png",
+      "players": 24
     },
     {
       "id": "afo",
@@ -650,7 +711,8 @@
       "squad": 24,
       "realFaces": 9,
       "fakeFaces": 15,
-      "logo": "assets/img/logos/afo.png"
+      "logo": "assets/img/logos/afo.png",
+      "players": 24
     },
     {
       "id": "aim",
@@ -660,7 +722,8 @@
       "squad": 24,
       "realFaces": 6,
       "fakeFaces": 18,
-      "logo": "assets/img/logos/aim.png"
+      "logo": "assets/img/logos/aim.png",
+      "players": 24
     },
     {
       "id": "alt",
@@ -670,7 +733,8 @@
       "squad": 21,
       "realFaces": 11,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/alt.png"
+      "logo": "assets/img/logos/alt.png",
+      "players": 21
     },
     {
       "id": "arn",
@@ -680,7 +744,8 @@
       "squad": 24,
       "realFaces": 14,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/arn.png"
+      "logo": "assets/img/logos/arn.png",
+      "players": 24
     },
     {
       "id": "apa",
@@ -690,7 +755,8 @@
       "squad": 18,
       "realFaces": 4,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/apa.png"
+      "logo": "assets/img/logos/apa.png",
+      "players": 18
     },
     {
       "id": "bpe",
@@ -700,7 +766,8 @@
       "squad": 24,
       "realFaces": 12,
       "fakeFaces": 12,
-      "logo": "assets/img/logos/bpe.png"
+      "logo": "assets/img/logos/bpe.png",
+      "players": 24
     },
     {
       "id": "brs",
@@ -710,7 +777,8 @@
       "squad": 24,
       "realFaces": 16,
       "fakeFaces": 8,
-      "logo": "assets/img/logos/brs.png"
+      "logo": "assets/img/logos/brs.png",
+      "players": 24
     },
     {
       "id": "csa",
@@ -720,7 +788,8 @@
       "squad": 20,
       "realFaces": 9,
       "fakeFaces": 11,
-      "logo": "assets/img/logos/csa.png"
+      "logo": "assets/img/logos/csa.png",
+      "players": 20
     },
     {
       "id": "cpn",
@@ -730,7 +799,8 @@
       "squad": 18,
       "realFaces": 4,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/cpn.png"
+      "logo": "assets/img/logos/cpn.png",
+      "players": 18
     },
     {
       "id": "cas",
@@ -740,7 +810,8 @@
       "squad": 24,
       "realFaces": 8,
       "fakeFaces": 16,
-      "logo": "assets/img/logos/cas.png"
+      "logo": "assets/img/logos/cas.png",
+      "players": 24
     },
     {
       "id": "des",
@@ -750,7 +821,8 @@
       "squad": 18,
       "realFaces": 1,
       "fakeFaces": 17,
-      "logo": "assets/img/logos/des.png"
+      "logo": "assets/img/logos/des.png",
+      "players": 18
     },
     {
       "id": "gam",
@@ -760,7 +832,8 @@
       "squad": 24,
       "realFaces": 8,
       "fakeFaces": 16,
-      "logo": "assets/img/logos/gam.png"
+      "logo": "assets/img/logos/gam.png",
+      "players": 24
     },
     {
       "id": "gtb",
@@ -770,7 +843,8 @@
       "squad": 24,
       "realFaces": 9,
       "fakeFaces": 15,
-      "logo": "assets/img/logos/gtb.png"
+      "logo": "assets/img/logos/gtb.png",
+      "players": 24
     },
     {
       "id": "hlu",
@@ -780,7 +854,8 @@
       "squad": 24,
       "realFaces": 10,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/hlu.png"
+      "logo": "assets/img/logos/hlu.png",
+      "players": 24
     },
     {
       "id": "jvl",
@@ -790,7 +865,8 @@
       "squad": 24,
       "realFaces": 11,
       "fakeFaces": 13,
-      "logo": "assets/img/logos/jvl.png"
+      "logo": "assets/img/logos/jvl.png",
+      "players": 24
     },
     {
       "id": "mau",
@@ -800,7 +876,8 @@
       "squad": 18,
       "realFaces": 3,
       "fakeFaces": 15,
-      "logo": "assets/img/logos/mau.png"
+      "logo": "assets/img/logos/mau.png",
+      "players": 18
     },
     {
       "id": "mdi",
@@ -810,7 +887,8 @@
       "squad": 24,
       "realFaces": 9,
       "fakeFaces": 15,
-      "logo": "assets/img/logos/mdi.png"
+      "logo": "assets/img/logos/mdi.png",
+      "players": 24
     },
     {
       "id": "ovg",
@@ -820,7 +898,8 @@
       "squad": 22,
       "realFaces": 6,
       "fakeFaces": 16,
-      "logo": "assets/img/logos/ovg.png"
+      "logo": "assets/img/logos/ovg.png",
+      "players": 22
     },
     {
       "id": "prh",
@@ -830,7 +909,8 @@
       "squad": 24,
       "realFaces": 3,
       "fakeFaces": 21,
-      "logo": "assets/img/logos/prh.png"
+      "logo": "assets/img/logos/prh.png",
+      "players": 24
     },
     {
       "id": "por",
@@ -840,7 +920,8 @@
       "squad": 19,
       "realFaces": 13,
       "fakeFaces": 6,
-      "logo": "assets/img/logos/por.png"
+      "logo": "assets/img/logos/por.png",
+      "players": 19
     },
     {
       "id": "ret",
@@ -850,7 +931,8 @@
       "squad": 24,
       "realFaces": 11,
       "fakeFaces": 13,
-      "logo": "assets/img/logos/ret.png"
+      "logo": "assets/img/logos/ret.png",
+      "players": 24
     },
     {
       "id": "rbe",
@@ -860,7 +942,8 @@
       "squad": 18,
       "realFaces": 10,
       "fakeFaces": 8,
-      "logo": "assets/img/logos/rbe.png"
+      "logo": "assets/img/logos/rbe.png",
+      "players": 18
     },
     {
       "id": "riv",
@@ -870,7 +953,8 @@
       "squad": 24,
       "realFaces": 5,
       "fakeFaces": 19,
-      "logo": "assets/img/logos/riv.png"
+      "logo": "assets/img/logos/riv.png",
+      "players": 24
     },
     {
       "id": "sam",
@@ -880,7 +964,8 @@
       "squad": 18,
       "realFaces": 5,
       "fakeFaces": 13,
-      "logo": "assets/img/logos/sam.png"
+      "logo": "assets/img/logos/sam.png",
+      "players": 18
     },
     {
       "id": "sad",
@@ -890,7 +975,8 @@
       "squad": 24,
       "realFaces": 10,
       "fakeFaces": 14,
-      "logo": "assets/img/logos/sad.png"
+      "logo": "assets/img/logos/sad.png",
+      "players": 24
     },
     {
       "id": "sca",
@@ -900,7 +986,8 @@
       "squad": 24,
       "realFaces": 5,
       "fakeFaces": 19,
-      "logo": "assets/img/logos/sca.png"
+      "logo": "assets/img/logos/sca.png",
+      "players": 24
     },
     {
       "id": "sjr",
@@ -910,7 +997,8 @@
       "squad": 21,
       "realFaces": 11,
       "fakeFaces": 10,
-      "logo": "assets/img/logos/sjr.png"
+      "logo": "assets/img/logos/sjr.png",
+      "players": 21
     },
     {
       "id": "sra",
@@ -920,7 +1008,8 @@
       "squad": 21,
       "realFaces": 1,
       "fakeFaces": 20,
-      "logo": "assets/img/logos/sra.png"
+      "logo": "assets/img/logos/sra.png",
+      "players": 21
     },
     {
       "id": "toc",
@@ -930,7 +1019,8 @@
       "squad": 23,
       "realFaces": 3,
       "fakeFaces": 20,
-      "logo": "assets/img/logos/toc.png"
+      "logo": "assets/img/logos/toc.png",
+      "players": 23
     },
     {
       "id": "trz",
@@ -940,7 +1030,8 @@
       "squad": 24,
       "realFaces": 8,
       "fakeFaces": 16,
-      "logo": "assets/img/logos/trz.png"
+      "logo": "assets/img/logos/trz.png",
+      "players": 24
     },
     {
       "id": "xvp",
@@ -950,13 +1041,9 @@
       "squad": 24,
       "realFaces": 12,
       "fakeFaces": 12,
-      "logo": "assets/img/logos/xvp.png"
+      "logo": "assets/img/logos/xvp.png",
+      "players": 24
     }
   ],
-  "notes": [
-    "Serie A ~99% real TM portraits",
-    "Remaining faceReal:false are quality initials avatars (club colors) for players without TM portrait",
-    "All 92 clubs have tmId and logo",
-    "Players without public photos (mostly C/D) use gradient+initials avatars, not 1KB placeholders"
-  ]
+  "notes": "Pacote limpo v11.1 — faces só do elenco, logos 92/92"
 }
