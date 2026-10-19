@@ -1,0 +1,962 @@
+{
+  "version": 10.7,
+  "phase": 5,
+  "season_year": 2026,
+  "totals": {
+    "clubs": 92,
+    "players": 2212,
+    "realFaces": 1467,
+    "avatarFaces": 745,
+    "logos": 92
+  },
+  "bySerie": {
+    "A": {
+      "clubs": 20,
+      "real": 540,
+      "avatar": 7
+    },
+    "B": {
+      "clubs": 20,
+      "real": 356,
+      "avatar": 104
+    },
+    "C": {
+      "clubs": 20,
+      "real": 308,
+      "avatar": 186
+    },
+    "D": {
+      "clubs": 32,
+      "real": 263,
+      "avatar": 448
+    }
+  },
+  "clubs": [
+    {
+      "id": "cap",
+      "name": "Athletico-PR",
+      "serie": "A",
+      "tmId": 679,
+      "squad": 29,
+      "realFaces": 29,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cap.png"
+    },
+    {
+      "id": "cam",
+      "name": "Atlético-MG",
+      "serie": "A",
+      "tmId": 330,
+      "squad": 26,
+      "realFaces": 26,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cam.png"
+    },
+    {
+      "id": "bah",
+      "name": "Bahia",
+      "serie": "A",
+      "tmId": 10010,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/bah.png"
+    },
+    {
+      "id": "bot",
+      "name": "Botafogo",
+      "serie": "A",
+      "tmId": 537,
+      "squad": 29,
+      "realFaces": 29,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/bot.png"
+    },
+    {
+      "id": "cha",
+      "name": "Chapecoense",
+      "serie": "A",
+      "tmId": 17776,
+      "squad": 29,
+      "realFaces": 29,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cha.png"
+    },
+    {
+      "id": "cor",
+      "name": "Corinthians",
+      "serie": "A",
+      "tmId": 199,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cor.png"
+    },
+    {
+      "id": "cfc",
+      "name": "Coritiba",
+      "serie": "A",
+      "tmId": 776,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cfc.png"
+    },
+    {
+      "id": "cru",
+      "name": "Cruzeiro",
+      "serie": "A",
+      "tmId": 609,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cru.png"
+    },
+    {
+      "id": "fla",
+      "name": "Flamengo",
+      "serie": "A",
+      "tmId": 614,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/fla.png"
+    },
+    {
+      "id": "flu",
+      "name": "Fluminense",
+      "serie": "A",
+      "tmId": 2462,
+      "squad": 29,
+      "realFaces": 29,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/flu.png"
+    },
+    {
+      "id": "gre",
+      "name": "Grêmio",
+      "serie": "A",
+      "tmId": 210,
+      "squad": 29,
+      "realFaces": 29,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/gre.png"
+    },
+    {
+      "id": "int",
+      "name": "Internacional",
+      "serie": "A",
+      "tmId": 6600,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/int.png"
+    },
+    {
+      "id": "mir",
+      "name": "Mirassol",
+      "serie": "A",
+      "tmId": 3876,
+      "squad": 26,
+      "realFaces": 26,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/mir.png"
+    },
+    {
+      "id": "pal",
+      "name": "Palmeiras",
+      "serie": "A",
+      "tmId": 1023,
+      "squad": 26,
+      "realFaces": 26,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/pal.png"
+    },
+    {
+      "id": "rbb",
+      "name": "RB Bragantino",
+      "serie": "A",
+      "tmId": 8793,
+      "squad": 26,
+      "realFaces": 26,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/rbb.png"
+    },
+    {
+      "id": "rem",
+      "name": "Remo",
+      "serie": "A",
+      "tmId": 10997,
+      "squad": 26,
+      "realFaces": 24,
+      "fakeFaces": 2,
+      "logo": "assets/img/logos/rem.png"
+    },
+    {
+      "id": "san",
+      "name": "Santos",
+      "serie": "A",
+      "tmId": 221,
+      "squad": 26,
+      "realFaces": 25,
+      "fakeFaces": 1,
+      "logo": "assets/img/logos/san.png"
+    },
+    {
+      "id": "sao",
+      "name": "São Paulo",
+      "serie": "A",
+      "tmId": 585,
+      "squad": 26,
+      "realFaces": 26,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/sao.png"
+    },
+    {
+      "id": "vas",
+      "name": "Vasco da Gama",
+      "serie": "A",
+      "tmId": 978,
+      "squad": 26,
+      "realFaces": 26,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/vas.png"
+    },
+    {
+      "id": "vit",
+      "name": "Vitória",
+      "serie": "A",
+      "tmId": 2125,
+      "squad": 26,
+      "realFaces": 22,
+      "fakeFaces": 4,
+      "logo": "assets/img/logos/vit.png"
+    },
+    {
+      "id": "ame",
+      "name": "América-MG",
+      "serie": "B",
+      "tmId": 2863,
+      "squad": 20,
+      "realFaces": 14,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/ame.png"
+    },
+    {
+      "id": "ath",
+      "name": "Athletic Club",
+      "serie": "B",
+      "tmId": 64918,
+      "squad": 20,
+      "realFaces": 14,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/ath.png"
+    },
+    {
+      "id": "acg",
+      "name": "Atlético-GO",
+      "serie": "B",
+      "tmId": 15172,
+      "squad": 20,
+      "realFaces": 16,
+      "fakeFaces": 4,
+      "logo": "assets/img/logos/acg.png"
+    },
+    {
+      "id": "ava",
+      "name": "Avaí",
+      "serie": "B",
+      "tmId": 2035,
+      "squad": 20,
+      "realFaces": 15,
+      "fakeFaces": 5,
+      "logo": "assets/img/logos/ava.png"
+    },
+    {
+      "id": "bsp",
+      "name": "Botafogo-SP",
+      "serie": "B",
+      "tmId": 9030,
+      "squad": 20,
+      "realFaces": 7,
+      "fakeFaces": 13,
+      "logo": "assets/img/logos/bsp.png"
+    },
+    {
+      "id": "crb",
+      "name": "CRB",
+      "serie": "B",
+      "tmId": 11449,
+      "squad": 20,
+      "realFaces": 11,
+      "fakeFaces": 9,
+      "logo": "assets/img/logos/crb.png"
+    },
+    {
+      "id": "cea",
+      "name": "Ceará",
+      "serie": "B",
+      "tmId": 2029,
+      "squad": 22,
+      "realFaces": 22,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/cea.png"
+    },
+    {
+      "id": "cri",
+      "name": "Criciúma",
+      "serie": "B",
+      "tmId": 7178,
+      "squad": 20,
+      "realFaces": 14,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/cri.png"
+    },
+    {
+      "id": "cui",
+      "name": "Cuiabá",
+      "serie": "B",
+      "tmId": 28022,
+      "squad": 20,
+      "realFaces": 14,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/cui.png"
+    },
+    {
+      "id": "for",
+      "name": "Fortaleza",
+      "serie": "B",
+      "tmId": 10870,
+      "squad": 22,
+      "realFaces": 22,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/for.png"
+    },
+    {
+      "id": "goi",
+      "name": "Goiás",
+      "serie": "B",
+      "tmId": 3197,
+      "squad": 20,
+      "realFaces": 10,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/goi.png"
+    },
+    {
+      "id": "juv",
+      "name": "Juventude",
+      "serie": "B",
+      "tmId": 10492,
+      "squad": 28,
+      "realFaces": 28,
+      "fakeFaces": 0,
+      "logo": "assets/img/logos/juv.png"
+    },
+    {
+      "id": "lon",
+      "name": "Londrina",
+      "serie": "B",
+      "tmId": 1693,
+      "squad": 26,
+      "realFaces": 23,
+      "fakeFaces": 3,
+      "logo": "assets/img/logos/lon.png"
+    },
+    {
+      "id": "nov",
+      "name": "Novorizontino",
+      "serie": "B",
+      "tmId": 37474,
+      "squad": 26,
+      "realFaces": 25,
+      "fakeFaces": 1,
+      "logo": "assets/img/logos/nov.png"
+    },
+    {
+      "id": "nau",
+      "name": "Náutico",
+      "serie": "B",
+      "tmId": 2646,
+      "squad": 26,
+      "realFaces": 21,
+      "fakeFaces": 5,
+      "logo": "assets/img/logos/nau.png"
+    },
+    {
+      "id": "ope",
+      "name": "Operário-PR",
+      "serie": "B",
+      "tmId": 27214,
+      "squad": 26,
+      "realFaces": 25,
+      "fakeFaces": 1,
+      "logo": "assets/img/logos/ope.png"
+    },
+    {
+      "id": "pon",
+      "name": "Ponte Preta",
+      "serie": "B",
+      "tmId": 1134,
+      "squad": 26,
+      "realFaces": 14,
+      "fakeFaces": 12,
+      "logo": "assets/img/logos/pon.png"
+    },
+    {
+      "id": "spt",
+      "name": "Sport",
+      "serie": "B",
+      "tmId": 8718,
+      "squad": 26,
+      "realFaces": 21,
+      "fakeFaces": 5,
+      "logo": "assets/img/logos/spt.png"
+    },
+    {
+      "id": "sbe",
+      "name": "São Bernardo",
+      "serie": "B",
+      "tmId": 16439,
+      "squad": 26,
+      "realFaces": 19,
+      "fakeFaces": 7,
+      "logo": "assets/img/logos/sbe.png"
+    },
+    {
+      "id": "vil",
+      "name": "Vila Nova",
+      "serie": "B",
+      "tmId": 5677,
+      "squad": 26,
+      "realFaces": 21,
+      "fakeFaces": 5,
+      "logo": "assets/img/logos/vil.png"
+    },
+    {
+      "id": "amz",
+      "name": "Amazonas",
+      "serie": "C",
+      "tmId": 87727,
+      "squad": 26,
+      "realFaces": 17,
+      "fakeFaces": 9,
+      "logo": "assets/img/logos/amz.png"
+    },
+    {
+      "id": "ana",
+      "name": "Anápolis",
+      "serie": "C",
+      "tmId": 17568,
+      "squad": 26,
+      "realFaces": 12,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/ana.png"
+    },
+    {
+      "id": "bar",
+      "name": "Barra-SC",
+      "serie": "C",
+      "tmId": 52519,
+      "squad": 26,
+      "realFaces": 13,
+      "fakeFaces": 13,
+      "logo": "assets/img/logos/bar.png"
+    },
+    {
+      "id": "bpb",
+      "name": "Botafogo-PB",
+      "serie": "C",
+      "tmId": 17964,
+      "squad": 26,
+      "realFaces": 21,
+      "fakeFaces": 5,
+      "logo": "assets/img/logos/bpb.png"
+    },
+    {
+      "id": "bru",
+      "name": "Brusque",
+      "serie": "C",
+      "tmId": 14390,
+      "squad": 26,
+      "realFaces": 16,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/bru.png"
+    },
+    {
+      "id": "cax",
+      "name": "Caxias",
+      "serie": "C",
+      "tmId": 9141,
+      "squad": 23,
+      "realFaces": 21,
+      "fakeFaces": 2,
+      "logo": "assets/img/logos/cax.png"
+    },
+    {
+      "id": "con",
+      "name": "Confiança",
+      "serie": "C",
+      "tmId": 3280,
+      "squad": 26,
+      "realFaces": 16,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/con.png"
+    },
+    {
+      "id": "fer",
+      "name": "Ferroviária",
+      "serie": "C",
+      "tmId": 15882,
+      "squad": 26,
+      "realFaces": 19,
+      "fakeFaces": 7,
+      "logo": "assets/img/logos/fer.png"
+    },
+    {
+      "id": "fig",
+      "name": "Figueirense",
+      "serie": "C",
+      "tmId": 4064,
+      "squad": 26,
+      "realFaces": 20,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/fig.png"
+    },
+    {
+      "id": "flo",
+      "name": "Floresta",
+      "serie": "C",
+      "tmId": 65477,
+      "squad": 24,
+      "realFaces": 14,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/flo.png"
+    },
+    {
+      "id": "gua",
+      "name": "Guarani",
+      "serie": "C",
+      "tmId": 1755,
+      "squad": 23,
+      "realFaces": 16,
+      "fakeFaces": 7,
+      "logo": "assets/img/logos/gua.png"
+    },
+    {
+      "id": "ili",
+      "name": "Inter de Limeira",
+      "serie": "C",
+      "tmId": 308,
+      "squad": 24,
+      "realFaces": 12,
+      "fakeFaces": 12,
+      "logo": "assets/img/logos/ili.png"
+    },
+    {
+      "id": "ita",
+      "name": "Itabaiana",
+      "serie": "C",
+      "tmId": 8547,
+      "squad": 24,
+      "realFaces": 10,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/ita.png"
+    },
+    {
+      "id": "itu",
+      "name": "Ituano",
+      "serie": "C",
+      "tmId": 4773,
+      "squad": 24,
+      "realFaces": 13,
+      "fakeFaces": 11,
+      "logo": "assets/img/logos/itu.png"
+    },
+    {
+      "id": "mar",
+      "name": "Maranhão",
+      "serie": "C",
+      "tmId": 34293,
+      "squad": 24,
+      "realFaces": 5,
+      "fakeFaces": 19,
+      "logo": "assets/img/logos/mar.png"
+    },
+    {
+      "id": "mga",
+      "name": "Maringá",
+      "serie": "C",
+      "tmId": 33003,
+      "squad": 24,
+      "realFaces": 10,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/mga.png"
+    },
+    {
+      "id": "pay",
+      "name": "Paysandu",
+      "serie": "C",
+      "tmId": 6347,
+      "squad": 24,
+      "realFaces": 20,
+      "fakeFaces": 4,
+      "logo": "assets/img/logos/pay.png"
+    },
+    {
+      "id": "scr",
+      "name": "Santa Cruz",
+      "serie": "C",
+      "tmId": 1785,
+      "squad": 24,
+      "realFaces": 18,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/scr.png"
+    },
+    {
+      "id": "vor",
+      "name": "Volta Redonda",
+      "serie": "C",
+      "tmId": 4176,
+      "squad": 24,
+      "realFaces": 19,
+      "fakeFaces": 5,
+      "logo": "assets/img/logos/vor.png"
+    },
+    {
+      "id": "ypi",
+      "name": "Ypiranga",
+      "serie": "C",
+      "tmId": 16869,
+      "squad": 24,
+      "realFaces": 16,
+      "fakeFaces": 8,
+      "logo": "assets/img/logos/ypi.png"
+    },
+    {
+      "id": "abc",
+      "name": "ABC",
+      "serie": "D",
+      "tmId": 7209,
+      "squad": 24,
+      "realFaces": 16,
+      "fakeFaces": 8,
+      "logo": "assets/img/logos/abc.png"
+    },
+    {
+      "id": "afo",
+      "name": "Afogados",
+      "serie": "D",
+      "tmId": 21409,
+      "squad": 24,
+      "realFaces": 9,
+      "fakeFaces": 15,
+      "logo": "assets/img/logos/afo.png"
+    },
+    {
+      "id": "aim",
+      "name": "Aimoré",
+      "serie": "D",
+      "tmId": 29501,
+      "squad": 24,
+      "realFaces": 6,
+      "fakeFaces": 18,
+      "logo": "assets/img/logos/aim.png"
+    },
+    {
+      "id": "alt",
+      "name": "Altos",
+      "serie": "D",
+      "tmId": 62794,
+      "squad": 21,
+      "realFaces": 11,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/alt.png"
+    },
+    {
+      "id": "arn",
+      "name": "América-RN",
+      "serie": "D",
+      "tmId": 1751,
+      "squad": 24,
+      "realFaces": 14,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/arn.png"
+    },
+    {
+      "id": "apa",
+      "name": "Aparecidense",
+      "serie": "D",
+      "tmId": 25209,
+      "squad": 18,
+      "realFaces": 4,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/apa.png"
+    },
+    {
+      "id": "bpe",
+      "name": "Brasil de Pelotas",
+      "serie": "D",
+      "tmId": 10560,
+      "squad": 24,
+      "realFaces": 12,
+      "fakeFaces": 12,
+      "logo": "assets/img/logos/bpe.png"
+    },
+    {
+      "id": "brs",
+      "name": "Brasiliense",
+      "serie": "D",
+      "tmId": 3973,
+      "squad": 24,
+      "realFaces": 16,
+      "fakeFaces": 8,
+      "logo": "assets/img/logos/brs.png"
+    },
+    {
+      "id": "csa",
+      "name": "CSA",
+      "serie": "D",
+      "tmId": 18545,
+      "squad": 20,
+      "realFaces": 9,
+      "fakeFaces": 11,
+      "logo": "assets/img/logos/csa.png"
+    },
+    {
+      "id": "cpn",
+      "name": "Campinense",
+      "serie": "D",
+      "tmId": 1753,
+      "squad": 18,
+      "realFaces": 4,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/cpn.png"
+    },
+    {
+      "id": "cas",
+      "name": "Cascavel",
+      "serie": "D",
+      "tmId": 28621,
+      "squad": 24,
+      "realFaces": 8,
+      "fakeFaces": 16,
+      "logo": "assets/img/logos/cas.png"
+    },
+    {
+      "id": "des",
+      "name": "Desportiva",
+      "serie": "D",
+      "tmId": 22013,
+      "squad": 18,
+      "realFaces": 1,
+      "fakeFaces": 17,
+      "logo": "assets/img/logos/des.png"
+    },
+    {
+      "id": "gam",
+      "name": "Gama",
+      "serie": "D",
+      "tmId": 7014,
+      "squad": 24,
+      "realFaces": 8,
+      "fakeFaces": 16,
+      "logo": "assets/img/logos/gam.png"
+    },
+    {
+      "id": "gtb",
+      "name": "Goiatuba",
+      "serie": "D",
+      "tmId": 8567,
+      "squad": 24,
+      "realFaces": 9,
+      "fakeFaces": 15,
+      "logo": "assets/img/logos/gtb.png"
+    },
+    {
+      "id": "hlu",
+      "name": "Hercílio Luz",
+      "serie": "D",
+      "tmId": 40196,
+      "squad": 24,
+      "realFaces": 10,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/hlu.png"
+    },
+    {
+      "id": "jvl",
+      "name": "Joinville",
+      "serie": "D",
+      "tmId": 3330,
+      "squad": 24,
+      "realFaces": 11,
+      "fakeFaces": 13,
+      "logo": "assets/img/logos/jvl.png"
+    },
+    {
+      "id": "mau",
+      "name": "Manaus FC",
+      "serie": "D",
+      "tmId": 46022,
+      "squad": 18,
+      "realFaces": 3,
+      "fakeFaces": 15,
+      "logo": "assets/img/logos/mau.png"
+    },
+    {
+      "id": "mdi",
+      "name": "Marcílio Dias",
+      "serie": "D",
+      "tmId": 4759,
+      "squad": 24,
+      "realFaces": 9,
+      "fakeFaces": 15,
+      "logo": "assets/img/logos/mdi.png"
+    },
+    {
+      "id": "ovg",
+      "name": "Operário-VG",
+      "serie": "D",
+      "tmId": 32386,
+      "squad": 22,
+      "realFaces": 6,
+      "fakeFaces": 16,
+      "logo": "assets/img/logos/ovg.png"
+    },
+    {
+      "id": "prh",
+      "name": "Parnahyba",
+      "serie": "D",
+      "tmId": 41872,
+      "squad": 24,
+      "realFaces": 3,
+      "fakeFaces": 21,
+      "logo": "assets/img/logos/prh.png"
+    },
+    {
+      "id": "por",
+      "name": "Portuguesa",
+      "serie": "D",
+      "tmId": 10247,
+      "squad": 19,
+      "realFaces": 13,
+      "fakeFaces": 6,
+      "logo": "assets/img/logos/por.png"
+    },
+    {
+      "id": "ret",
+      "name": "Retrô",
+      "serie": "D",
+      "tmId": 76156,
+      "squad": 24,
+      "realFaces": 11,
+      "fakeFaces": 13,
+      "logo": "assets/img/logos/ret.png"
+    },
+    {
+      "id": "rbe",
+      "name": "Rio Branco-ES",
+      "serie": "D",
+      "tmId": 30489,
+      "squad": 18,
+      "realFaces": 10,
+      "fakeFaces": 8,
+      "logo": "assets/img/logos/rbe.png"
+    },
+    {
+      "id": "riv",
+      "name": "River-PI",
+      "serie": "D",
+      "tmId": 35388,
+      "squad": 24,
+      "realFaces": 5,
+      "fakeFaces": 19,
+      "logo": "assets/img/logos/riv.png"
+    },
+    {
+      "id": "sam",
+      "name": "Sampaio Corrêa",
+      "serie": "D",
+      "tmId": 3319,
+      "squad": 18,
+      "realFaces": 5,
+      "fakeFaces": 13,
+      "logo": "assets/img/logos/sam.png"
+    },
+    {
+      "id": "sad",
+      "name": "Santo André",
+      "serie": "D",
+      "tmId": 7478,
+      "squad": 24,
+      "realFaces": 10,
+      "fakeFaces": 14,
+      "logo": "assets/img/logos/sad.png"
+    },
+    {
+      "id": "sca",
+      "name": "São Caetano",
+      "serie": "D",
+      "tmId": 291,
+      "squad": 24,
+      "realFaces": 5,
+      "fakeFaces": 19,
+      "logo": "assets/img/logos/sca.png"
+    },
+    {
+      "id": "sjr",
+      "name": "São José-RS",
+      "serie": "D",
+      "tmId": 7535,
+      "squad": 21,
+      "realFaces": 11,
+      "fakeFaces": 10,
+      "logo": "assets/img/logos/sjr.png"
+    },
+    {
+      "id": "sra",
+      "name": "São Raimundo-RR",
+      "serie": "D",
+      "tmId": 73574,
+      "squad": 21,
+      "realFaces": 1,
+      "fakeFaces": 20,
+      "logo": "assets/img/logos/sra.png"
+    },
+    {
+      "id": "toc",
+      "name": "Tocantinópolis",
+      "serie": "D",
+      "tmId": 27242,
+      "squad": 23,
+      "realFaces": 3,
+      "fakeFaces": 20,
+      "logo": "assets/img/logos/toc.png"
+    },
+    {
+      "id": "trz",
+      "name": "Treze",
+      "serie": "D",
+      "tmId": 11086,
+      "squad": 24,
+      "realFaces": 8,
+      "fakeFaces": 16,
+      "logo": "assets/img/logos/trz.png"
+    },
+    {
+      "id": "xvp",
+      "name": "XV de Piracicaba",
+      "serie": "D",
+      "tmId": 55335,
+      "squad": 24,
+      "realFaces": 12,
+      "fakeFaces": 12,
+      "logo": "assets/img/logos/xvp.png"
+    }
+  ],
+  "notes": [
+    "Serie A ~99% real TM portraits",
+    "Remaining faceReal:false are quality initials avatars (club colors) for players without TM portrait",
+    "All 92 clubs have tmId and logo",
+    "Players without public photos (mostly C/D) use gradient+initials avatars, not 1KB placeholders"
+  ]
+}

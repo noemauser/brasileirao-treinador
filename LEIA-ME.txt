@@ -1,0 +1,14 @@
+BRASILEIRÃO — TREINADOR  v11.0
+==============================
+Repositório único: https://github.com/noemauser/brasileirao-treinador
+
+COMO JOGAR
+  Abra index.html no navegador (Chrome/Edge/Firefox).
+  Não precisa de internet para jogar (logos/faces locais).
+
+DRIVE
+  Mesma versão na pasta "Brasileirão" do Google Drive.
+
+ATUALIZAR
+  git pull
+  ou baixe o ZIP mais recente do GitHub.
