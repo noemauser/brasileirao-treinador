@@ -1,29 +1,39 @@
-// Brasileirão v11.1 — emblemas TM CDN fallback
+// Brasileirão v12.1 — emblemas TM CDN fallback (BR + intl NPC)
 window.LOGO_TM = {
   abc: 7209,
   acg: 15172,
   afo: 21409,
   aim: 29501,
+  alm: 184,
   alt: 62794,
   ame: 2863,
+  amec: 2352,
+  amex: 3631,
   amz: 87727,
   ana: 17568,
   apa: 25209,
   arn: 1751,
   ath: 64918,
+  atl: 8172,
   ava: 2035,
   bah: 10010,
   bar: 52519,
+  boc: 189,
+  bol: 6878,
   bot: 537,
   bpb: 17964,
   bpe: 10560,
   brs: 3973,
   bru: 14390,
+  bsc: 3523,
   bsp: 9030,
   cam: 330,
   cap: 679,
   cas: 28621,
   cax: 9141,
+  cco: 2433,
+  ccp: 1214,
+  ccs: 531,
   cea: 2029,
   cfc: 776,
   cha: 17776,
@@ -36,6 +46,8 @@ window.LOGO_TM = {
   csa: 18545,
   cui: 28022,
   des: 22013,
+  edl: 288,
+  eme: 4561,
   fer: 15882,
   fig: 4064,
   fla: 614,
@@ -43,37 +55,48 @@ window.LOGO_TM = {
   flu: 2462,
   for: 10870,
   gam: 7014,
+  gdl: 6711,
   goi: 3197,
   gre: 210,
   gtb: 8567,
   gua: 1755,
   hlu: 40196,
   ili: 308,
+  ind_ar: 1234,
   int: 6600,
   ita: 8547,
   itu: 4773,
   juv: 10492,
   jvl: 3330,
+  ldp: 9875,
+  ldu: 9855,
   lon: 1693,
   mar: 34293,
   mau: 46022,
   mdi: 4759,
   mga: 33003,
+  mil: 2350,
   mir: 3876,
+  mon: 2407,
+  nac: 866,
   nau: 2646,
   nov: 37474,
+  oli: 629,
   ope: 27214,
   ovg: 32386,
   pal: 1023,
   pay: 6347,
+  pen: 861,
   pon: 1134,
   por: 10247,
   prh: 41872,
+  rac: 1444,
   rbb: 8793,
   rbe: 30489,
   rem: 10997,
   ret: 76156,
   riv: 35388,
+  rpl: 209,
   sad: 7478,
   sam: 3319,
   san: 221,
@@ -82,17 +105,27 @@ window.LOGO_TM = {
   sca: 291,
   scr: 1785,
   sjr: 7535,
+  slo: 1775,
+  spc: 1450,
   spt: 8718,
   sra: 73574,
+  str: 5570,
+  tac: 13297,
+  tig: 7055,
   toc: 27242,
   trz: 11086,
+  uca: 3277,
+  uch: 1037,
+  uni_pe: 6593,
   vas: 978,
+  vel: 1029,
   vil: 5677,
   vit: 2125,
   vor: 4176,
   xvp: 55335,
   ypi: 16869,
-};
+
+};;
 
 window.logoCdnUrl = function(clubId) {
   const id = (window.LOGO_TM || {})[clubId];
@@ -100,16 +133,14 @@ window.logoCdnUrl = function(clubId) {
   return 'https://tmssl.akamaized.net/images/wappen/head/' + id + '.png';
 };
 
-// Se logo local falhar, tenta CDN do Transfermarkt
 document.addEventListener("error", function(e) {
   const t = e.target;
   if (!t || t.tagName !== 'IMG') return;
   const src = t.getAttribute('src') || '';
   if (!src.includes('assets/img/logos/')) return;
   if (t.dataset.cdnTried) return;
-  const m = src.match(/logos\/([a-z0-9]+)\.png/i);
+  const m = src.match(/logos\/([a-z0-9_]+)\.png/i);
   if (!m) return;
   const cdn = window.logoCdnUrl && window.logoCdnUrl(m[1]);
   if (cdn) { t.dataset.cdnTried = "1"; t.src = cdn; }
 }, true);
-

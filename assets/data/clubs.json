@@ -1,5 +1,5 @@
 {
-  "version": 12.0,
+  "version":12.2,
   "phase": "audit-clean",
   "season_year": 2026,
   "totals": {
@@ -1045,5 +1045,5 @@
       "players": 24
     }
   ],
-  "notes": "v12 copas + intl NPC"
+  "notes": "v12 copas + intl NPC | v12.1 intl TM real"
 }

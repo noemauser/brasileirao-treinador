@@ -1,11 +1,20 @@
-/* Brasileirão v12.0 — copas · regionais · CDB · Lib · SUD · intl NPC */
+/* Brasileirão v12.2 — pente fino · copas · intl TM · saves · jogabilidade */
 (() => {
 "use strict";
-const SAVE_KEY = "brasileirao_coach_v12";
+const SAVE_KEY = "brasileirao_coach_v122";
+const SAVE_KEY_CHAIN = [
+  "brasileirao_coach_v122",
+  "brasileirao_coach_v121",
+  "brasileirao_coach_v12",
+  "brasileirao_coach_v11",
+  "brasileirao_coach_v10",
+  "brasileirao_coach_v9",
+  "brasileirao_coach_v8"
+];
 const SAVE_KEY_V11 = "brasileirao_coach_v10";
 const SAVE_KEY_V9 = "brasileirao_coach_v9";
 const SAVE_KEY_OLD = "brasileirao_coach_v8";
-const VERSION = "12.0";
+const VERSION = "12.2";
 
 const $ = (s, el=document) => el.querySelector(s);
 const $$ = (s, el=document) => [...el.querySelectorAll(s)];
@@ -558,6 +567,8 @@ function squadOVR(club, ids) {
 
 function sectorPower(club, formation, xi, mentality="normal") {
   const form = formation || club.formation || "4-3-3";
+  // Pequeno boost de contexto continental p/ top SA/MX (NPC)
+  const intlBoost = (club && club.intl) ? Math.max(0, Math.min(3, Math.round(((club.rep||70) - 78) / 6))) : 0;
   const coords = FORM_POS[form] || FORM_POS["4-3-3"];
   const ids = xi || club.xi;
   let defB=0, midB=0, atkB=0, defS=0, midS=0, atkS=0;
@@ -585,9 +596,9 @@ function sectorPower(club, formation, xi, mentality="normal") {
   const m = MENTALITY[mentality] || MENTALITY.normal;
   // density: bodies in sector matter a lot (formation impact)
   const dens = b => 0.78 + 0.07 * b; // 2→0.92, 3→0.99, 4→1.06, 5→1.13
-  const def = Math.round((defS / Math.max(1,defB)) * dens(defB) * m.def);
-  const mid = Math.round((midS / Math.max(1,midB)) * dens(midB));
-  const atk = Math.round((atkS / Math.max(1,atkB)) * dens(atkB) * m.atk);
+  const def = Math.round((defS / Math.max(1,defB)) * dens(defB) * m.def) + intlBoost;
+  const mid = Math.round((midS / Math.max(1,midB)) * dens(midB)) + intlBoost;
+  const atk = Math.round((atkS / Math.max(1,atkB)) * dens(atkB) * m.atk) + intlBoost;
   return {def, mid, atk, bodies:{def:defB, mid:midB, atk:atkB}};
 }
 
@@ -629,10 +640,31 @@ function intlPool() {
 function ensureClubReady(club) {
   if (!club) return club;
   if (club.intl || club.playable === false) {
-    if (!club.squad || club.squad.length < 14) buildSyntheticSquad(club);
+    if (!club.logo || String(club.logo).startsWith("data:")) {
+      club.logo = "assets/img/logos/" + club.id + ".png";
+    }
+    const hasReal = (club.squad || []).some(p => p && (p.faceReal || p.tmId));
+    if (!club.squad || club.squad.length < 14) {
+      if (!hasReal) buildSyntheticSquad(club);
+    } else {
+      (club.squad || []).forEach(pl => {
+        if (!pl) return;
+        if (pl.faceReal && pl.face && !String(pl.face).startsWith("assets/")) {
+          pl.face = "assets/img/faces/" + club.id + "_" + (pl.tmId || pl.id) + ".png";
+        }
+        if (!pl.face) pl.face = club.logo;
+        if (pl.energy == null) pl.energy = 100;
+        if (pl.form == null) pl.form = 6;
+        if (pl.inj == null) pl.inj = 0;
+      });
+    }
     if (!club.xi || club.xi.length !== 11) rebalanceXI(club);
     club.formation = club.formation || "4-3-3";
     club.mentality = club.mentality || "normal";
+    if (club.squad && club.squad.length) {
+      const top = club.squad.slice().sort((a,b)=>(b.ovr||0)-(a.ovr||0)).slice(0,11);
+      club.ovr = Math.round(top.reduce((s,p)=>s+(p.ovr||60),0) / Math.max(1, top.length));
+    }
   }
   return club;
 }
@@ -702,7 +734,9 @@ function winnersFromMatches(matches) {
     if (m.gh == null) return;
     if (m.gh > m.ga) out.push(m.home);
     else if (m.ga > m.gh) out.push(m.away);
-    else out.push(Math.random() < 0.5 ? m.home : m.away); // penalties
+    else if (m.pens === "home") out.push(m.home);
+    else if (m.pens === "away") out.push(m.away);
+    else out.push(Math.random() < 0.55 ? m.home : m.away); // pênaltis
   });
   return out;
 }
@@ -772,8 +806,9 @@ function fillNextRound(cup) {
     const cur = cup.rounds[i];
     const nxt = cup.rounds[i+1];
     if (!cur.matches.every(m => m.played || m.bye)) continue;
+    // se próxima rodada já está toda preenchida e sem pending, pular
+    if (nxt.matches.every(m => m.home && (m.away || m.bye) && !m.pending)) continue;
     const wins = winnersFromMatches(cur.matches);
-    // pair into next matches
     let wi = 0;
     nxt.matches.forEach(m => {
       if (m.home && m.away && !m.pending) { wi += 2; return; }
@@ -966,23 +1001,53 @@ function resolveCupMatchResult(f, gh, ga) {
   cup.rounds.forEach(r => {
     r.matches.forEach(m => {
       if (m.week===f.week && m.home===f.home && m.away===f.away && (m.round===f.round || !f.round)) {
-        m.played = true; m.gh = gh; m.ga = ga;
+        if (m.played && m.gh != null) return; // evita double-resolve
+        m.played = true;
+        m.gh = gh; m.ga = ga;
+        // Mata-mata: empate → pênaltis (leve viés casa)
+        if (!m.bye && m.away && m.gh === m.ga) {
+          const homeWinsPens = Math.random() < 0.55;
+          m.pens = homeWinsPens ? "home" : "away";
+          m.ghPens = homeWinsPens ? 5 : 4;
+          m.gaPens = homeWinsPens ? 4 : 5;
+        }
       }
     });
   });
   fillNextRound(cup);
+  // Prêmio de avanço / pênaltis para o técnico
+  if (S && S.clubId && (f.home === S.clubId || f.away === S.clubId)) {
+    const m = (cup.rounds || []).flatMap(r => r.matches || []).find(x =>
+      x.week===f.week && x.home===f.home && x.away===f.away);
+    if (m && m.played) {
+      const w = winnersFromMatches([m])[0];
+      if (w === S.clubId) {
+        const advancePrize = cup.comp==="lib" ? 6e5 : cup.comp==="sud" ? 3e5 : cup.comp==="cdb" ? 2e5 : 5e4;
+        S.money += advancePrize;
+        if (m.pens) {
+          const opp = clubByIdAny(f.home===S.clubId ? f.away : f.home);
+          pushNews("Pênaltis!", meClub().name + " avança nos pênaltis" + (opp ? " vs " + opp.short : "") + " · " + cup.name, "torcida");
+          toast("⚽ Decisão nos pênaltis — avançou!", 2800);
+        }
+      } else if (m.pens) {
+        pushNews("Eliminado nos pênaltis", "Fim de linha na " + cup.name + ".", "info");
+      }
+    }
+  }
   // champion?
   const last = cup.rounds[cup.rounds.length-1];
   if (last && last.matches.length === 1 && last.matches[0].played) {
     const m = last.matches[0];
-    cup.champion = m.gh >= m.ga ? m.home : m.away;
+    const wlist = winnersFromMatches([m]);
+    cup.champion = wlist[0] || (m.gh > m.ga ? m.home : m.away);
     if (cup.champion === S.clubId) {
       const prize = cup.comp==="lib" ? 8e6 : cup.comp==="sud" ? 3.5e6 : cup.comp==="cdb" ? 2.5e6 : 4e5;
       S.money += prize;
       S.reputation = clamp((S.reputation||0) + (cup.comp==="lib"?10:cup.comp==="cdb"?7:cup.comp==="sud"?6:3), 0, 100);
       pushNews("Campeão!", "O " + meClub().name + " fatura a " + cup.name + "! Prêmio " + fmtM(prize) + ".", "torcida");
       toast("🏆 CAMPEÃO: " + cup.name + "!", 4000);
-    } else if (cup.champion) {
+    } else if (cup.champion && !cup._champNews) {
+      cup._champNews = true;
       const ch = clubByIdAny(cup.champion);
       pushNews(cup.name, (ch ? ch.name : cup.champion) + " é campeão.", "info");
     }
@@ -991,17 +1056,17 @@ function resolveCupMatchResult(f, gh, ga) {
 }
 
 function simAICupAndLeagueWeek() {
-  // Simulate all non-human fixtures this week (league + cups)
+  // finishMatchToTable já chama resolveCupMatchResult — NÃO duplicar
   (S.fixtures || []).filter(f => f.week === S.week && !f.played && !f.bye && f.home && f.away).forEach(f => {
     if (f.home === S.clubId || f.away === S.clubId) return;
-    // ensure intl clubs ready
     ensureClubReady(clubByIdAny(f.home));
     ensureClubReady(clubByIdAny(f.away));
-    const M = simAIMatch(f.home, f.away, { skipTable: f.comp && f.comp !== "league", comp: f.comp || "league" });
-    // simAIMatch already marks fixture via finishMatchToTable — for cups need resolve
-    if (f.comp && f.comp !== "league") {
-      resolveCupMatchResult(f, M.gh, M.ga);
-    }
+    simAIMatch(f.home, f.away, {
+      skipTable: f.comp && f.comp !== "league",
+      comp: f.comp || "league",
+      cupKey: f.cupKey,
+      round: f.round
+    });
   });
 }
 
@@ -1113,10 +1178,11 @@ function save() {
 }
 function load() {
   try {
-    let raw = localStorage.getItem(SAVE_KEY);
-    if (!raw) raw = localStorage.getItem(typeof SAVE_KEY_V11!=="undefined"?SAVE_KEY_V11:null);
-    if (!raw) raw = localStorage.getItem(typeof SAVE_KEY_V9!=="undefined"?SAVE_KEY_V9:null);
-    if (!raw) raw = localStorage.getItem(SAVE_KEY_OLD);
+    let raw = null;
+    for (const k of (typeof SAVE_KEY_CHAIN !== "undefined" ? SAVE_KEY_CHAIN : [SAVE_KEY])) {
+      raw = localStorage.getItem(k);
+      if (raw) break;
+    }
     if (!raw) return false;
     S = JSON.parse(raw);
     if (!S || !S.clubId) return false;
@@ -1427,8 +1493,8 @@ function finishMatchToTable(M) {
   if (M.gh>M.ga) { nudge(M.hXI,M.home,true); nudge(M.aXI,M.away,false); }
   else if (M.ga>M.gh) { nudge(M.aXI,M.away,true); nudge(M.hXI,M.home,false); }
 
-  // Vitórias do técnico (metas da diretoria)
-  if (S && S.clubId) {
+  // Vitórias do técnico (metas da diretoria) — só liga
+  if (S && S.clubId && isLeague) {
     if (M.home.id === S.clubId && M.gh > M.ga) S.seasonWins = (S.seasonWins || 0) + 1;
     if (M.away.id === S.clubId && M.ga > M.gh) S.seasonWins = (S.seasonWins || 0) + 1;
   }
@@ -1506,13 +1572,15 @@ function advanceWeek() {
   // Simula jogos de IA (liga + copas); partidas do técnico devem já ter sido jogadas
   (S.fixtures || []).filter(f => f.week === S.week && f.bye && !f.played).forEach(f => { f.played = true; });
   simAICupAndLeagueWeek();
-  S.clubs.forEach(c => c.squad.forEach(p => {
-    if (isInjured(p)) {
-      p.energy = Math.round(clamp((p.energy || 50) + ri(4, 10), 30, 85));
-    } else {
-      p.energy = Math.round(clamp((p.energy || 100) + ri(10, 18), 45, 100));
-    }
-  }));
+  const recoverSquad = (c) => {
+    if (!c || !c.squad) return;
+    c.squad.forEach(p => {
+      if (isInjured(p)) p.energy = Math.round(clamp((p.energy || 50) + ri(4, 10), 30, 85));
+      else p.energy = Math.round(clamp((p.energy || 100) + ri(10, 18), 45, 100));
+    });
+  };
+  (S.clubs || []).forEach(recoverSquad);
+  (S.intlClubs || []).forEach(recoverSquad);
   healInjuriesWeek();
   // Folha salarial semanal (1/4 do mensal) — pressiona caixa
   const me = meClub();
@@ -1771,8 +1839,11 @@ function closePos(a,b){
   return (g[b]||[]).includes(a);
 }
 function autoXI(club) {
+  if (!club) return [];
+  ensureClubReady(club);
   if (club.xi && club.xi.length===11) return club.xi.slice();
-  rebalanceXI(club); return club.xi.slice();
+  rebalanceXI(club);
+  return (club.xi || []).slice();
 }
 
 // ---------- UI ----------
@@ -1789,7 +1860,7 @@ function showScreen(name) {
 
 function renderMenu() {
   showScreen("menuScreen");
-  const has = !!(localStorage.getItem(SAVE_KEY) || localStorage.getItem(SAVE_KEY_V9) || localStorage.getItem(SAVE_KEY_OLD));
+  const has = !!(typeof SAVE_KEY_CHAIN !== "undefined" ? SAVE_KEY_CHAIN.some(k => localStorage.getItem(k)) : localStorage.getItem(SAVE_KEY));
   const btn = $("#btnContinue");
   if (btn) btn.style.display = has ? "flex" : "none";
   const diffBox = $("#menuDiff");
@@ -1864,7 +1935,8 @@ function viewHome(me, pos, row) {
   const fix = myFixtureThisWeek();
   let next = `<div class="muted">Sem jogo nesta rodada — avance a semana.</div>`;
   if (fix) {
-    const home = clubByIdState(fix.home), away = clubByIdState(fix.away);
+    const home = ensureClubReady(clubByIdState(fix.home)) || {short:"?", logo:"", name:"?"};
+    const away = ensureClubReady(clubByIdState(fix.away)) || {short:"?", logo:"", name:"?"};
     const isHome = fix.home===me.id;
     const host = isHome ? me : away;
     const meta = COMP_META[fix.comp || "league"] || COMP_META.league;
@@ -1872,7 +1944,7 @@ function viewHome(me, pos, row) {
     next = `
       <div class="comp-pill" style="background:${meta.color}22;color:${meta.color};border:1px solid ${meta.color}55">${meta.short} · ${meta.name}${fix.round ? " · " + fix.round : ""}</div>
       <div class="next-match">
-        <div class="side"><img src="${home.logo}" onerror="this.style.opacity=.3"><b>${home.short}</b>${home.intl?'<div class="muted" style="font-size:9px">'+ (home.country||"") +'</div>':''}</div>
+        <div class="side"><img src="${home.logo||""}" onerror="this.style.opacity=.3"><b>${home.short||"?"}</b>${home.intl?'<div class="muted" style="font-size:9px">'+ (home.country||"") +'</div>':''}</div>
         <div class="mid">
           <div class="date">Semana ${S.week} · ${isHome?"Casa":"Fora"}${more>1?' · +'+(more-1)+' jogo(s)':''}</div>
           <div class="vs">VS</div>
@@ -1892,7 +1964,9 @@ function viewHome(me, pos, row) {
     const gh = r.home===me.id?r.gh:r.ga, ga = r.home===me.id?r.ga:r.gh;
     const opp = clubByIdState(r.home===me.id?r.away:r.home);
     const res = gh>ga?"V":gh===ga?"E":"D";
-    return `<div class="r"><b>${res} ${gh}x${ga}</b>${opp?opp.short:""}</div>`;
+    const cmeta = COMP_META[r.comp||"league"] || COMP_META.league;
+    const tag = (r.comp && r.comp !== "league") ? (cmeta.short||"")+" " : "";
+    return `<div class="r"><b>${tag}${res} ${gh}x${ga}</b>${opp?opp.short:""}</div>`;
   }).join("")}</div>` : "";
 
   return `
@@ -2048,7 +2122,15 @@ function viewTable(me) {
       ${mine.length ? mine.map(cup => {
         const last = [...(cup.rounds||[])].reverse().find(r => r.matches.some(m => m.home===S.clubId || m.away===S.clubId));
         const myM = last ? last.matches.find(m => m.home===S.clubId || m.away===S.clubId) : null;
-        const st = cup.champion === S.clubId ? "🏆 Campeão" : cup.champion ? ("Campeão: " + ((clubByIdAny(cup.champion)||{}).short || cup.champion)) : (myM && myM.played ? (myM.gh>myM.ga|| (myM.home===S.clubId && myM.bye) ? "Avançou" : "Eliminado") : (last ? last.name : "—"));
+        const st = (() => {
+          if (cup.champion === S.clubId) return "🏆 Campeão";
+          if (cup.champion) return "Campeão: " + ((clubByIdAny(cup.champion)||{}).short || cup.champion);
+          if (!myM) return last ? last.name : "—";
+          if (!myM.played) return last ? last.name : "—";
+          const w = winnersFromMatches([myM])[0];
+          if (w === S.clubId) return myM.pens ? "Avançou (pênaltis)" : "Avançou";
+          return myM.pens ? "Eliminado (pênaltis)" : "Eliminado";
+        })();
         return `<div class="news-item" style="margin-bottom:6px"><span class="ic">🏆</span><div>
           <div class="nt">${cup.name}</div>
           <div class="nb">${st}${myM && !myM.played && myM.away ? " · Próximo: vs " + ((clubByIdAny(myM.home===S.clubId?myM.away:myM.home)||{}).short||"?") + " (sem. " + myM.week + ")" : ""}</div>
@@ -2318,7 +2400,8 @@ function openPrematch() {
   // v12: carrega comp da fixture
   const f = myFixtureThisWeek(); if (!f) return;
   const me = meClub();
-  const home = clubByIdState(f.home), away = clubByIdState(f.away);
+  const home = ensureClubReady(clubByIdState(f.home)) || {short:"?",logo:"",name:"?",stadium:"Estádio",capacity:0};
+  const away = ensureClubReady(clubByIdState(f.away)) || {short:"?",logo:"",name:"?",stadium:"Estádio",capacity:0};
   const isHome = f.home === me.id;
   const opp = isHome ? away : home;
   const host = isHome ? me : away;
@@ -2375,14 +2458,17 @@ function startLiveMatch() {
   if (!f) { toast("Sem jogo."); return; }
   const humanSide = f.home===S.clubId ? "home" : "away";
   const me = meClub();
+  const homeC = ensureClubReady(clubByIdState(f.home));
+  const awayC = ensureClubReady(clubByIdState(f.away));
+  if (!homeC || !awayC) { toast("Clube do confronto não encontrado."); return; }
   match = simMatch(f.home, f.away, {
     live:true, humanSide,
-    hForm: f.home===me.id ? me.formation : (clubByIdState(f.home).formation||"4-3-3"),
-    aForm: f.away===me.id ? me.formation : (clubByIdState(f.away).formation||"4-3-3"),
+    hForm: f.home===me.id ? me.formation : (homeC.formation||"4-3-3"),
+    aForm: f.away===me.id ? me.formation : (awayC.formation||"4-3-3"),
     hMent: f.home===me.id ? (me.mentality||"normal") : "normal",
     aMent: f.away===me.id ? (me.mentality||"normal") : "normal",
-    hXI: f.home===me.id ? me.xi.slice() : autoXI(clubByIdState(f.home)),
-    aXI: f.away===me.id ? me.xi.slice() : autoXI(clubByIdState(f.away)),
+    hXI: f.home===me.id ? me.xi.slice() : autoXI(homeC),
+    aXI: f.away===me.id ? me.xi.slice() : autoXI(awayC),
     comp: f.comp || "league", cupKey: f.cupKey, round: f.round
   });
   match.userCmd = null;

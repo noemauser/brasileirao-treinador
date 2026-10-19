@@ -1,16 +1,26 @@
-BRASILEIRÃO — TREINADOR  v12.0
+Brasileirão — Treinador  v12.2
 ================================
-NOVIDADES
-  • Campeonatos Estaduais / Regionais (início da temporada)
-  • Copa do Brasil (mata-mata 64 clubes)
-  • Libertadores e Sul-Americana
-  • Clubes da América (River, Boca, América-MEX, Nacional, Peñarol…)
-    entram só para preencher Lib/SUD — NÃO jogáveis, sem tabela
+PENTE FINO + DADOS OFICIAIS
+
+v12.2 destaques
+  • Clubes internacionais (32) com emblemas, elencos e fotos TM reais
+  • River Plate (rpl), Boca, América-MEX, Nacional, Peñarol, etc.
+  • Estaduais/Regionais · Copa do Brasil · Libertadores · Sul-Americana
+  • Pênaltis em empates de mata-mata · prêmio de avanço
+  • Energia recuperada também nos NPCs internacionais
+  • Saves migrados (v8 → v12.2) · sem double-resolve de copas
+  • Metas da diretoria contam só jogos de liga
+  • UI: badge de copa nos resultados · status com pênaltis
 
 COMO JOGAR
-  Abra index.html. Nova carreira (save v12).
-  Na aba Tabela veja sua campanha de copas.
-  Avançar semana só após jogar/simular todas as suas partidas da semana.
+  Extraia o ZIP e abra index.html (offline, sem servidor).
+  Nova carreira: Série C ou D · suba com resultados e propostas.
+  Copas: prioridade Lib > SUD > CDB > Estadual > Liga na semana.
+  Aba Tabela: campanha de copas + classificados BR Lib/SUD.
 
-DRIVE
-  Extraia Brasileirão.zip e abra index.html
+SAVE
+  Chave: brasileirao_coach_v122
+  Migra automaticamente saves antigos (v8…v12.1).
+
+DRIVE / GITHUB
+  Mantenha sempre a última versão (este pacote).
