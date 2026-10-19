@@ -1,0 +1,650 @@
+{
+  "cap": {
+    "tmId": 679,
+    "tmName": "Club Athletico Paranaense",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/679.png?lm=1",
+    "serie": "A",
+    "gameName": "Athletico-PR"
+  },
+  "cam": {
+    "tmId": 330,
+    "tmName": "Clube Atlético Mineiro",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/330.png?lm=1",
+    "serie": "A",
+    "gameName": "Atlético-MG"
+  },
+  "bah": {
+    "tmId": 10010,
+    "tmName": "Esporte Clube Bahia",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/10010.png?lm=1",
+    "serie": "A",
+    "gameName": "Bahia"
+  },
+  "bot": {
+    "tmId": 537,
+    "tmName": "Botafogo de Futebol e Regatas",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/537.png?lm=1",
+    "serie": "A",
+    "gameName": "Botafogo"
+  },
+  "cha": {
+    "tmId": 17776,
+    "tmName": "Associação Chapecoense de Futebol",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/17776.png?lm=1",
+    "serie": "A",
+    "gameName": "Chapecoense"
+  },
+  "cor": {
+    "tmId": 199,
+    "tmName": "Sport Club Corinthians Paulista",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/199.png?lm=1",
+    "serie": "A",
+    "gameName": "Corinthians"
+  },
+  "cfc": {
+    "tmId": 776,
+    "tmName": "Coritiba Foot Ball Club",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/776.png?lm=1",
+    "serie": "A",
+    "gameName": "Coritiba"
+  },
+  "cru": {
+    "tmId": 609,
+    "tmName": "Cruzeiro Esporte Clube",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/609.png?lm=1",
+    "serie": "A",
+    "gameName": "Cruzeiro"
+  },
+  "fla": {
+    "tmId": 614,
+    "tmName": "CR Flamengo",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/614.png?lm=1",
+    "serie": "A",
+    "gameName": "Flamengo"
+  },
+  "flu": {
+    "tmId": 2462,
+    "tmName": "Fluminense Football Club",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/2462.png?lm=1",
+    "serie": "A",
+    "gameName": "Fluminense"
+  },
+  "gre": {
+    "tmId": 210,
+    "tmName": "Grêmio Foot-Ball Porto Alegrense",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/210.png?lm=1",
+    "serie": "A",
+    "gameName": "Grêmio"
+  },
+  "int": {
+    "tmId": 6600,
+    "tmName": "Sport Club Internacional",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/6600.png?lm=1",
+    "serie": "A",
+    "gameName": "Internacional"
+  },
+  "mir": {
+    "tmId": 3876,
+    "tmName": "Mirassol Futebol Clube (SP)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/3876.png?lm=1",
+    "serie": "A",
+    "gameName": "Mirassol"
+  },
+  "pal": {
+    "tmId": 1023,
+    "tmName": "Sociedade Esportiva Palmeiras",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/1023.png?lm=1",
+    "serie": "A",
+    "gameName": "Palmeiras"
+  },
+  "rbb": {
+    "tmId": 8793,
+    "tmName": "Red Bull Bragantino",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/8793.png?lm=1",
+    "serie": "A",
+    "gameName": "RB Bragantino"
+  },
+  "rem": {
+    "tmId": 10997,
+    "tmName": "Clube do Remo (PA)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/10997.png?lm=1",
+    "serie": "A",
+    "gameName": "Remo"
+  },
+  "san": {
+    "tmId": 221,
+    "tmName": "Santos FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/221.png?lm=1",
+    "serie": "A",
+    "gameName": "Santos"
+  },
+  "sao": {
+    "tmId": 585,
+    "tmName": "São Paulo Futebol Clube",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/585.png?lm=1",
+    "serie": "A",
+    "gameName": "São Paulo"
+  },
+  "vas": {
+    "tmId": 978,
+    "tmName": "Clube de Regatas Vasco da Gama",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/978.png?lm=1",
+    "serie": "A",
+    "gameName": "Vasco da Gama"
+  },
+  "vit": {
+    "tmId": 2125,
+    "tmName": "Esporte Clube Vitória",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/2125.png?lm=1",
+    "serie": "A",
+    "gameName": "Vitória"
+  },
+  "ame": {
+    "tmId": 2863,
+    "tmName": "América Futebol Clube (MG)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/2863.png?lm=1",
+    "serie": "B",
+    "gameName": "América-MG"
+  },
+  "ath": {
+    "tmId": 64918,
+    "tmName": "Athletic Club",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/64918.png?lm=1",
+    "serie": "B",
+    "gameName": "Athletic Club"
+  },
+  "acg": {
+    "tmId": 15172,
+    "tmName": "Atlético Clube Goianiense",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/15172.png?lm=1",
+    "serie": "B",
+    "gameName": "Atlético-GO"
+  },
+  "ava": {
+    "tmId": 2035,
+    "tmName": "Avaí FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/2035.png?lm=1",
+    "serie": "B",
+    "gameName": "Avaí"
+  },
+  "bsp": {
+    "tmId": 9030,
+    "tmName": "Botafogo FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/9030.png?lm=1",
+    "serie": "B",
+    "gameName": "Botafogo-SP"
+  },
+  "crb": {
+    "tmId": 11449,
+    "tmName": "Clube de Regatas Brasil (AL)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/11449.png?lm=1",
+    "serie": "B",
+    "gameName": "CRB"
+  },
+  "cea": {
+    "tmId": 2029,
+    "tmName": "Ceará Sporting Club",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/2029.png?lm=1",
+    "serie": "B",
+    "gameName": "Ceará"
+  },
+  "cri": {
+    "tmId": 7178,
+    "tmName": "Criciúma EC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/7178.png?lm=1",
+    "serie": "B",
+    "gameName": "Criciúma"
+  },
+  "cui": {
+    "tmId": 28022,
+    "tmName": "Cuiabá Esporte Clube (MT)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/28022.png?lm=1",
+    "serie": "B",
+    "gameName": "Cuiabá"
+  },
+  "for": {
+    "tmId": 10870,
+    "tmName": "Fortaleza Esporte Clube",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/10870.png?lm=1",
+    "serie": "B",
+    "gameName": "Fortaleza"
+  },
+  "goi": {
+    "tmId": 3197,
+    "tmName": "Goiás EC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/3197.png?lm=1",
+    "serie": "B",
+    "gameName": "Goiás"
+  },
+  "juv": {
+    "tmId": 10492,
+    "tmName": "Esporte Clube Juventude",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/10492.png?lm=1",
+    "serie": "B",
+    "gameName": "Juventude"
+  },
+  "lon": {
+    "tmId": 1693,
+    "tmName": "Londrina Esporte Clube (PR)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/1693.png?lm=1",
+    "serie": "B",
+    "gameName": "Londrina"
+  },
+  "nov": {
+    "tmId": 37474,
+    "tmName": "Grêmio Novorizontino",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/37474.png?lm=1",
+    "serie": "B",
+    "gameName": "Novorizontino"
+  },
+  "nau": {
+    "tmId": 2646,
+    "tmName": "Clube Náutico Capibaribe",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/2646.png?lm=1",
+    "serie": "B",
+    "gameName": "Náutico"
+  },
+  "ope": {
+    "tmId": 27214,
+    "tmName": "Operário Ferroviário Esporte Clube (PR)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/27214.png?lm=1",
+    "serie": "B",
+    "gameName": "Operário-PR"
+  },
+  "pon": {
+    "tmId": 1134,
+    "tmName": "Associação Atlética Ponte Preta",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/1134.png?lm=1",
+    "serie": "B",
+    "gameName": "Ponte Preta"
+  },
+  "spt": {
+    "tmId": 8718,
+    "tmName": "Sport Club do Recife",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/8718.png?lm=1",
+    "serie": "B",
+    "gameName": "Sport"
+  },
+  "sbe": {
+    "tmId": 16439,
+    "tmName": "São Bernardo FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/16439.png?lm=1",
+    "serie": "B",
+    "gameName": "São Bernardo"
+  },
+  "vil": {
+    "tmId": 5677,
+    "tmName": "Vila Nova Futebol Clube (GO)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/5677.png?lm=1",
+    "serie": "B",
+    "gameName": "Vila Nova"
+  },
+  "amz": {
+    "tmId": 87727,
+    "tmName": "Amazonas FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/87727.png?lm=1",
+    "serie": "C",
+    "gameName": "Amazonas"
+  },
+  "ana": {
+    "tmId": 17568,
+    "tmName": "Anápolis FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/17568.png?lm=1",
+    "serie": "C",
+    "gameName": "Anápolis"
+  },
+  "bar": {
+    "tmId": 52519,
+    "tmName": "Barra FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/52519.png?lm=1",
+    "serie": "C",
+    "gameName": "Barra-SC"
+  },
+  "bpb": {
+    "tmId": 9030,
+    "tmName": "Botafogo FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/9030.png?lm=1",
+    "serie": "B",
+    "gameName": "Botafogo-PB"
+  },
+  "bru": {
+    "tmId": 14390,
+    "tmName": "Brusque Futebol Clube (SC)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/14390.png?lm=1",
+    "serie": "C",
+    "gameName": "Brusque"
+  },
+  "cax": {
+    "tmId": 9141,
+    "tmName": "SER Caxias do Sul (RS)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/9141.png?lm=1",
+    "serie": "C",
+    "gameName": "Caxias"
+  },
+  "con": {
+    "tmId": 3280,
+    "tmName": "AD Confiança",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/3280.png?lm=1",
+    "serie": "C",
+    "gameName": "Confiança"
+  },
+  "fer": {
+    "tmId": 15882,
+    "tmName": "Ferroviária",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/15882.png?lm=1",
+    "serie": "C",
+    "gameName": "Ferroviária"
+  },
+  "fig": {
+    "tmId": 4064,
+    "tmName": "Figueirense Futebol Clube",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/4064.png?lm=1",
+    "serie": "C",
+    "gameName": "Figueirense"
+  },
+  "flo": {
+    "tmId": 65477,
+    "tmName": "Floresta Esporte Clube (CE)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/65477.png?lm=1",
+    "serie": "C",
+    "gameName": "Floresta"
+  },
+  "gua": {
+    "tmId": 1755,
+    "tmName": "Guarani Futebol Clube (SP)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/1755.png?lm=1",
+    "serie": "C",
+    "gameName": "Guarani"
+  },
+  "ili": {
+    "tmId": 308,
+    "tmName": "AA Internacional de Limeira",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/308.png?lm=1",
+    "serie": "C",
+    "gameName": "Inter de Limeira"
+  },
+  "ita": {
+    "tmId": 8547,
+    "tmName": "Associação Olímpica de Itabaiana (SE)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/8547.png?lm=1",
+    "serie": "C",
+    "gameName": "Itabaiana"
+  },
+  "itu": {
+    "tmId": 4773,
+    "tmName": "Ituano Futebol Clube (SP)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/4773.png?lm=1",
+    "serie": "C",
+    "gameName": "Ituano"
+  },
+  "mar": {
+    "tmId": 34293,
+    "tmName": "Maranhão AC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/34293.png?lm=1",
+    "serie": "C",
+    "gameName": "Maranhão"
+  },
+  "mga": {
+    "tmId": 33003,
+    "tmName": "Maringá FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/33003.png?lm=1",
+    "serie": "C",
+    "gameName": "Maringá"
+  },
+  "pay": {
+    "tmId": 6347,
+    "tmName": "Paysandu SC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/6347.png?lm=1",
+    "serie": "C",
+    "gameName": "Paysandu"
+  },
+  "scr": {
+    "tmId": 1785,
+    "tmName": "Santa Cruz FC (PE)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/1785.png?lm=1",
+    "serie": "C",
+    "gameName": "Santa Cruz"
+  },
+  "vor": {
+    "tmId": 4176,
+    "tmName": "Volta Redonda Futebol Clube (RJ)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/4176.png?lm=1",
+    "serie": "C",
+    "gameName": "Volta Redonda"
+  },
+  "ypi": {
+    "tmId": 16869,
+    "tmName": "Ypiranga FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/16869.png?lm=1",
+    "serie": "C",
+    "gameName": "Ypiranga"
+  },
+  "abc": {
+    "tmId": 7209,
+    "tmName": "ABC Futebol Clube (RN)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/7209.png?lm=1",
+    "serie": "D",
+    "gameName": "ABC"
+  },
+  "alt": {
+    "tmId": 62794,
+    "tmName": "AA Altos",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/62794.png?lm=1",
+    "serie": "D",
+    "gameName": "Altos"
+  },
+  "apa": {
+    "tmId": 25209,
+    "tmName": "AA Aparecidense",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/25209.png?lm=1",
+    "serie": "D",
+    "gameName": "Aparecidense"
+  },
+  "arn": {
+    "tmId": 1751,
+    "tmName": "América FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/1751.png?lm=1",
+    "serie": "D",
+    "gameName": "América-RN"
+  },
+  "bpe": {
+    "tmId": 11449,
+    "tmName": "Clube de Regatas Brasil (AL)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/11449.png?lm=1",
+    "serie": "B",
+    "gameName": "Brasil de Pelotas"
+  },
+  "brs": {
+    "tmId": 3973,
+    "tmName": "Brasiliense FC (DF)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/3973.png?lm=1",
+    "serie": "D",
+    "gameName": "Brasiliense"
+  },
+  "cas": {
+    "tmId": 28621,
+    "tmName": "FC Cascavel (PR)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/28621.png?lm=1",
+    "serie": "D",
+    "gameName": "Cascavel"
+  },
+  "gam": {
+    "tmId": 978,
+    "tmName": "Clube de Regatas Vasco da Gama",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/978.png?lm=1",
+    "serie": "A",
+    "gameName": "Gama"
+  },
+  "gtb": {
+    "tmId": 8567,
+    "tmName": "Goiatuba EC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/8567.png?lm=1",
+    "serie": "D",
+    "gameName": "Goiatuba"
+  },
+  "jvl": {
+    "tmId": 3330,
+    "tmName": "Joinville Esporte Clube (SC)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/3330.png?lm=1",
+    "serie": "D",
+    "gameName": "Joinville"
+  },
+  "mau": {
+    "tmId": 46022,
+    "tmName": "Manaus Futebol Clube",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/46022.png?lm=1",
+    "serie": "D",
+    "gameName": "Manaus FC"
+  },
+  "mdi": {
+    "tmId": 4759,
+    "tmName": "Clube Náutico Marcílio Dias (SC)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/4759.png?lm=1",
+    "serie": "D",
+    "gameName": "Marcílio Dias"
+  },
+  "ovg": {
+    "tmId": 32386,
+    "tmName": "Operário FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/32386.png?lm=1",
+    "serie": "D",
+    "gameName": "Operário-VG"
+  },
+  "por": {
+    "tmId": 10247,
+    "tmName": "Portuguesa",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/10247.png?lm=1",
+    "serie": "D",
+    "gameName": "Portuguesa"
+  },
+  "prh": {
+    "tmId": 41872,
+    "tmName": "Parnahyba SC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/41872.png?lm=1",
+    "serie": "D",
+    "gameName": "Parnahyba"
+  },
+  "rbe": {
+    "tmId": 30489,
+    "tmName": "Rio Branco AC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/30489.png?lm=1",
+    "serie": "D",
+    "gameName": "Rio Branco-ES"
+  },
+  "ret": {
+    "tmId": 76156,
+    "tmName": "Retrô FC Brasil",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/76156.png?lm=1",
+    "serie": "D",
+    "gameName": "Retrô"
+  },
+  "riv": {
+    "tmId": 64925,
+    "tmName": "Piauí EC (PI)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/64925.png?lm=1",
+    "serie": "D",
+    "gameName": "River-PI"
+  },
+  "sam": {
+    "tmId": 3319,
+    "tmName": "Sampaio Corrêa FC (MA)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/3319.png?lm=1",
+    "serie": "D",
+    "gameName": "Sampaio Corrêa"
+  },
+  "sca": {
+    "tmId": 585,
+    "tmName": "São Paulo Futebol Clube",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/585.png?lm=1",
+    "serie": "A",
+    "gameName": "São Caetano"
+  },
+  "sjr": {
+    "tmId": 7535,
+    "tmName": "Esporte Clube São José (RS)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/7535.png?lm=1",
+    "serie": "D",
+    "gameName": "São José-RS"
+  },
+  "sra": {
+    "tmId": 73574,
+    "tmName": "São Raimundo EC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/73574.png?lm=1",
+    "serie": "D",
+    "gameName": "São Raimundo-RR"
+  },
+  "toc": {
+    "tmId": 27242,
+    "tmName": "Tocantinópolis EC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/27242.png?lm=1",
+    "serie": "D",
+    "gameName": "Tocantinópolis"
+  },
+  "trz": {
+    "tmId": 11086,
+    "tmName": "Treze FC",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/11086.png?lm=1",
+    "serie": "D",
+    "gameName": "Treze"
+  },
+  "xvp": {
+    "tmId": 55335,
+    "tmName": "EC XV de Piracicaba",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/55335.png?lm=1",
+    "serie": "D",
+    "gameName": "XV de Piracicaba"
+  },
+  "csa": {
+    "tmId": 18545,
+    "tmName": "Centro Sportivo Alagoano (AL)",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/18545.png?lm=1",
+    "serie": "D",
+    "gameName": "CSA"
+  },
+  "sad": {
+    "tmId": null,
+    "tmName": "Santo André",
+    "crestUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/St_Andrew_the_Apostle_-_Bulgarian_icon.jpg/500px-St_Andrew_the_Apostle_-_Bulgarian_icon.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "serie": "D",
+    "gameName": "sad",
+    "source": "wiki"
+  },
+  "afo": {
+    "tmId": null,
+    "tmName": "FC Vomp II",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/62190.png?lm=1",
+    "serie": "D",
+    "gameName": "afo"
+  },
+  "hlu": {
+    "tmId": null,
+    "tmName": "SV Konkordiahütte-Tenneck II",
+    "crestUrl": "https://img.a.transfermarkt.technology/wappen/big/62191.png?lm=1",
+    "serie": "D",
+    "gameName": "hlu"
+  },
+  "aim": {
+    "tmId": null,
+    "tmName": "Aimoré",
+    "crestUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Botocudos-Chief-Brasil.jpg/500px-Botocudos-Chief-Brasil.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "serie": "D",
+    "gameName": "aim",
+    "source": "wiki"
+  },
+  "cpn": {
+    "tmId": null,
+    "tmName": "Campinense",
+    "crestUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Campinense_Clube_logo.svg/500px-Campinense_Clube_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "serie": "D",
+    "gameName": "cpn",
+    "source": "wiki"
+  },
+  "des": {
+    "tmId": null,
+    "tmName": "Desportiva Ferroviária",
+    "crestUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/EscudoDesportivaFerrovi%C3%A1ria.png/500px-EscudoDesportivaFerrovi%C3%A1ria.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "serie": "D",
+    "gameName": "des",
+    "source": "wiki"
+  }
+}

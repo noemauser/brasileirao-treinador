@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#050d14"/>
+<meta name="brasileirao-version" content="10.9"/>
+<title>Brasileirão — Treinador</title>
+<link rel="stylesheet" href="assets/css/game.css"/>
+</head>
+<body>
+<div id="app">
+
+  <!-- MENU -->
+  <section class="screen active" id="menuScreen">
+    <div class="hero">
+      <div class="logo-ball">⚽</div>
+      <h1>BRASILEIRÃO</h1>
+      <div class="sub">Modo técnico · Séries A · B · C · D · v10.9</div>
+    </div>
+    <div class="menu-list">
+      <button id="btnNew" type="button"><b>Nova carreira</b><span>Comece na Série C ou D</span></button>
+      <button id="btnContinue" type="button"><b>Continuar</b><span>Save local no navegador</span></button>
+    </div>
+    <div class="card" style="margin:10px 16px">
+      <h3 style="margin:0 0 6px">Dificuldade</h3>
+      <div class="strip" id="menuDiff">
+        <button type="button" class="r" data-d="easy">Amador</button>
+        <button type="button" class="r on" data-d="normal">Profissional</button>
+        <button type="button" class="r" data-d="hard">Série A</button>
+        <button type="button" class="r" data-d="elite">Elite</button>
+      </div>
+      <p class="muted" id="menuDiffNote" style="margin-top:6px">Profissional · afeta xG e caixa inicial</p>
+    </div>
+    <p class="muted center-pad">Offline · abra este HTML direto, sem servidor.<br>
+      Formação e setores DEF/MEIO/ATA decidem o jogo.<br>
+      Moral da torcida · Notícias · Lesões · Partida no canvas polida.<br>
+      <b style="color:var(--acc2)">v10.9 · Emblemas oficiais C/D via Transfermarkt</b></p>
+  </section>
+
+  <!-- CREATE -->
+  <section class="screen" id="createScreen">
+    <div class="topbar">
+      <button class="ghost" id="btnBackMenu" type="button" style="padding:8px 10px">←</button>
+      <div class="meta"><div class="name">Nova carreira</div><div class="info">Série C ou D · suba com resultados</div></div>
+    </div>
+    <div class="scroll">
+      <div class="card">
+        <label class="muted">Seu nome</label>
+        <input id="mgrName" placeholder="Técnico" maxlength="24" style="margin-top:6px" autocomplete="off"/>
+        <div class="hr"></div>
+        <label class="muted">Série inicial</label>
+        <select id="createSerie" style="margin-top:6px">
+          <option value="D">Série D · 32 clubes</option>
+          <option value="C">Série C · 20 clubes</option>
+        </select>
+        <p class="muted" style="margin-top:8px;font-size:11px">A e B abrem só com reputação alta (propostas no fim da temporada).</p>
+      </div>
+      <div class="club-pick" id="clubPick"></div>
+      <button class="primary" id="btnStartCareer" type="button" style="width:100%;margin:8px 0 20px">Assinar contrato</button>
+    </div>
+  </section>
+
+  <!-- HUB -->
+  <section class="screen" id="hubScreen">
+    <div class="topbar">
+      <img class="crest" id="hubCrest" alt=""/>
+      <div class="meta"><div class="name" id="hubName">—</div><div class="info" id="hubInfo">—</div></div>
+      <div class="chip money" id="hubMoney">R$ 0</div>
+    </div>
+    <div class="scroll" id="hubBody"></div>
+    <nav class="nav" id="hubNav">
+      <button data-tab="home" class="on" type="button"><i>🏠</i>Home</button>
+      <button data-tab="squad" type="button"><i>👥</i>Elenco</button>
+      <button data-tab="tactics" type="button"><i>📋</i>Tática</button>
+      <button data-tab="table" type="button"><i>📊</i>Tabela</button>
+      <button data-tab="market" type="button"><i>💰</i>Mercado</button>
+    </nav>
+  </section>
+
+  <!-- PREMATCH -->
+  <section class="screen" id="prematchScreen">
+    <div class="topbar">
+      <button class="ghost" id="btnPrematchBack" type="button" style="padding:8px 10px">←</button>
+      <div class="meta"><div class="name">Pré-jogo</div><div class="info" id="preMeta">—</div></div>
+    </div>
+    <div class="scroll" id="preBody"></div>
+  </section>
+
+  <!-- MATCH -->
+  <section class="screen" id="matchScreen">
+    <div class="match-top">
+      <div class="team"><img id="mHomeL" alt=""/><span id="mHomeN">—</span></div>
+      <div style="text-align:center">
+        <div class="sc" id="mScore">0 - 0</div>
+        <div class="min" id="mMin">0'</div>
+        <div class="atm" id="mAtm">Torcida</div>
+      </div>
+      <div class="team"><img id="mAwayL" alt=""/><span id="mAwayN">—</span></div>
+    </div>
+    <div id="pitchWrap"><canvas id="pitch" width="360" height="520"></canvas></div>
+    <div class="match-hud">
+      <div class="poss"><div class="h" id="possH" style="width:50%"></div><div class="a" id="possA" style="width:50%"></div></div>
+      <div class="event-log" id="mEvent">—</div>
+      <div class="muted" id="liveSec" style="text-align:center;font-size:11px"></div>
+      <div class="muted" id="cmdActive" style="text-align:center;font-size:11px;color:var(--yel)"></div>
+      <div class="ctrl-row">
+        <button data-cmd="press" type="button">Pressão</button>
+        <button data-cmd="hold" type="button">Recuar</button>
+        <button data-cmd="counter" type="button">Contra</button>
+        <button data-cmd="shoot" type="button">Finalizar</button>
+        <button data-cmd="sub" type="button">Sub</button>
+        <button id="btnSpeed" type="button">1x</button>
+        <button id="btnPause" type="button">⏸</button>
+      </div>
+    </div>
+    <div id="goalOverlay">
+      <img id="goalCrest" alt=""/>
+      <img id="goalFace" alt="" style="width:72px;height:72px;border-radius:50%;border:3px solid #fff;margin-top:-8px;object-fit:cover"/>
+      <div class="gtext pulse" id="goalText">GOOOL!</div>
+      <div class="gsub" id="goalSub"></div>
+    </div>
+    <div class="panel-overlay" id="htPanel"><div class="sheet" id="htBody"></div></div>
+    <div class="panel-overlay" id="subPanel">
+      <div class="sheet" id="subBody"></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="panel-overlay" id="playerSheet">
+  <div class="sheet" id="playerBody"></div>
+</div>
+
+<div id="toast"></div>
+<script src="assets/data/clubs-data.js"></script>
+<script src="assets/js/logo-tm.js"></script>
+<script src="assets/js/game.js"></script>
+</body>
+</html>
