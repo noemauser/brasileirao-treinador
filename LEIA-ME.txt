@@ -1,17 +1,16 @@
-BRASILEIRÃO — TREINADOR  v11.1 (pacote limpo)
-==============================================
-COMO JOGAR
-  Abra index.html no Chrome/Edge/Firefox.
-  Funciona offline (sem servidor).
+BRASILEIRÃO — TREINADOR  v12.0
+================================
+NOVIDADES
+  • Campeonatos Estaduais / Regionais (início da temporada)
+  • Copa do Brasil (mata-mata 64 clubes)
+  • Libertadores e Sul-Americana
+  • Clubes da América (River, Boca, América-MEX, Nacional, Peñarol…)
+    entram só para preencher Lib/SUD — NÃO jogáveis, sem tabela
 
-O QUE TEM
-  • 92 clubes (Séries A B C D)
-  • 92 logos oficiais
-  • 2212 faces de elenco (reais TM + avatars)
-  • Sem backups, amostras ou faces órfãs
+COMO JOGAR
+  Abra index.html. Nova carreira (save v12).
+  Na aba Tabela veja sua campanha de copas.
+  Avançar semana só após jogar/simular todas as suas partidas da semana.
 
 DRIVE
-  Pasta Brasileirão = esta versão.
-
-GitHub (espelho)
-  https://github.com/noemauser/brasileirao-treinador
+  Extraia Brasileirão.zip e abra index.html

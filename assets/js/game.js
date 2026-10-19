@@ -1,10 +1,11 @@
-/* Brasileirão v11.1 — limpo · faces elenco · logos oficiais · canvas */
+/* Brasileirão v12.0 — copas · regionais · CDB · Lib · SUD · intl NPC */
 (() => {
 "use strict";
-const SAVE_KEY = "brasileirao_coach_v10";
+const SAVE_KEY = "brasileirao_coach_v12";
+const SAVE_KEY_V11 = "brasileirao_coach_v10";
 const SAVE_KEY_V9 = "brasileirao_coach_v9";
 const SAVE_KEY_OLD = "brasileirao_coach_v8";
-const VERSION = "11.1";
+const VERSION = "12.0";
 
 const $ = (s, el=document) => el.querySelector(s);
 const $$ = (s, el=document) => [...el.querySelectorAll(s)];
@@ -538,7 +539,12 @@ let S = null;
 let match = null;
 let ui = { screen:"menu", tab:"home", selPlayer:null, pickClub:null, tSelIdx:null, difficulty:"normal", market:{pos:"ALL", serie:"ALL", sort:"ovr", q:""} };
 
-const clubByIdState = id => S.clubs.find(c => c.id === id);
+const clubByIdState = id => {
+  if (!S) return null;
+  const c = (S.clubs || []).find(x => x.id === id);
+  if (c) return c;
+  return clubByIdAny(id);
+};
 const playerById = (club, pid) => club.squad.find(p => p.id === pid);
 const meClub = () => S.clubs.find(c => c.id === S.clubId);
 const myTable = () => tableFor(meClub().serie);
@@ -592,6 +598,413 @@ function humanSectors(M) {
   return {mine, opp};
 }
 
+
+// ========== v12.0 COPAS · REGIONAIS · CONTINENTAIS ==========
+const COMP_META = {
+  league: { id:"league", name:"Brasileirão", short:"BR", color:"#3d8bfd" },
+  est:    { id:"est",    name:"Estadual / Regional", short:"EST", color:"#f0c14a" },
+  cdb:    { id:"cdb",    name:"Copa do Brasil", short:"CDB", color:"#7dffa3" },
+  lib:    { id:"lib",    name:"Libertadores", short:"LIB", color:"#c9a227" },
+  sud:    { id:"sud",    name:"Sul-Americana", short:"SUD", color:"#e36b2c" }
+};
+
+const REGION_MAP = {
+  // estados com 4+ clubes no jogo → estadual próprio
+  SP:"Paulista", RJ:"Carioca", MG:"Mineiro", RS:"Gaúcho", PR:"Paranaense",
+  SC:"Catarinense", GO:"Goiano", PE:"Pernambucano",
+  // demais → copas regionais
+  BA:"Nordeste", CE:"Nordeste", RN:"Nordeste", PB:"Nordeste", AL:"Nordeste",
+  SE:"Nordeste", MA:"Nordeste", PI:"Nordeste",
+  PA:"Norte", AM:"Norte", TO:"Norte", RR:"Norte",
+  MT:"Centro-Oeste", DF:"Centro-Oeste", MS:"Centro-Oeste",
+  ES:"Sudeste Interior",
+};
+
+function intlPool() {
+  const base = (typeof INTL_CLUBS !== "undefined" && INTL_CLUBS) ? INTL_CLUBS
+    : (DATA && DATA.intlClubs) ? DATA.intlClubs : [];
+  return base.map(c => deep(c));
+}
+
+function ensureClubReady(club) {
+  if (!club) return club;
+  if (club.intl || club.playable === false) {
+    if (!club.squad || club.squad.length < 14) buildSyntheticSquad(club);
+    if (!club.xi || club.xi.length !== 11) rebalanceXI(club);
+    club.formation = club.formation || "4-3-3";
+    club.mentality = club.mentality || "normal";
+  }
+  return club;
+}
+
+function buildSyntheticSquad(club) {
+  const base = club.ovr || 72;
+  const namesA = ["Mateo","Santiago","Joaquín","Nicolás","Facundo","Diego","Carlos","Luis","Miguel","Andrés","Sebastián","Javier","Tomás","Ignacio","Fernando","Ricardo","Eduardo","Paulo","Héctor","Óscar"];
+  const namesB = ["Gómez","Rodríguez","Fernández","López","Martínez","Sánchez","Pérez","Romero","Díaz","Torres","Álvarez","Ruiz","Ramírez","Flores","Vargas","Castro","Morales","Rojas","Mendoza","Silva"];
+  const positions = ["G","G","Z","Z","Z","LD","LE","V","V","M","M","M","A","A","A","Z","M","A"];
+  club.squad = positions.map((pos,i) => {
+    const ovr = clamp(Math.round(base + rnd(-5, 4) + (pos==="A"?1:0) - (i>14?3:0)), 55, 92);
+    const id = club.id + "_s" + i;
+    return {
+      id, name: pick(namesA) + " " + pick(namesB), pos, ovr,
+      age: ri(19, 34), value: ovr * 80000, wage: ovr * 400,
+      energy: 100, form: ri(5, 8), goals: 0, apps: 0,
+      face: club.logo, faceReal: false, tmId: null, num: i+1, inj: 0
+    };
+  });
+  rebalanceXI(club);
+}
+
+function clubByIdAny(id) {
+  if (!id || !S) return null;
+  let c = (S.clubs || []).find(x => x.id === id);
+  if (c) return c;
+  c = (S.intlClubs || []).find(x => x.id === id);
+  if (c) return ensureClubReady(c);
+  return null;
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i=a.length-1;i>0;i--){ const j=ri(0,i); const t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+
+function nextPow2(n) {
+  let p = 1; while (p < n) p *= 2; return p;
+}
+
+function makeKORound(ids, week, comp, roundName) {
+  const list = ids.slice();
+  // bye padding to even
+  if (list.length % 2) list.push(null);
+  const matches = [];
+  for (let i=0;i<list.length;i+=2) {
+    const a = list[i], b = list[i+1];
+    if (!a || !b) {
+      // bye → auto advance stored as played walkover
+      const w = a || b;
+      if (w) matches.push({ week, comp, round: roundName, home: w, away: null, played: true, gh: 3, ga: 0, bye: true });
+      continue;
+    }
+    // random home
+    if (Math.random() < 0.5) matches.push({ week, comp, round: roundName, home: a, away: b, played: false, gh: null, ga: null });
+    else matches.push({ week, comp, round: roundName, home: b, away: a, played: false, gh: null, ga: null });
+  }
+  return matches;
+}
+
+function winnersFromMatches(matches) {
+  const out = [];
+  matches.forEach(m => {
+    if (!m.played) return;
+    if (m.bye) { out.push(m.home); return; }
+    if (m.gh == null) return;
+    if (m.gh > m.ga) out.push(m.home);
+    else if (m.ga > m.gh) out.push(m.away);
+    else out.push(Math.random() < 0.5 ? m.home : m.away); // penalties
+  });
+  return out;
+}
+
+function roundLabel(nTeams) {
+  if (nTeams <= 2) return "Final";
+  if (nTeams <= 4) return "Semifinal";
+  if (nTeams <= 8) return "Quartas";
+  if (nTeams <= 16) return "Oitavas";
+  if (nTeams <= 32) return "16avos";
+  return "Fase " + nTeams;
+}
+
+function buildKnockoutTree(seedIds, startWeek, weekStep, comp, maxRounds=8) {
+  let ids = shuffle(seedIds).slice();
+  // target power of 2 size (trim or keep)
+  let size = nextPow2(ids.length);
+  if (size > ids.length) {
+    // byes handled in makeKORound
+  } else if (ids.length > size) {
+    ids = ids.slice(0, size);
+  }
+  const rounds = [];
+  let week = startWeek;
+  let current = ids;
+  let guard = 0;
+  while (current.length > 1 && guard < maxRounds) {
+    guard++;
+    const name = roundLabel(current.length);
+    const matches = makeKORound(current, week, comp, name);
+    rounds.push({ name, week, matches });
+    // for unplayed, winners unknown — store only structure of first round fully;
+    // subsequent rounds placeholders filled as previous completes
+    if (matches.every(m => m.played)) {
+      current = winnersFromMatches(matches);
+      week += weekStep;
+    } else {
+      // create empty next rounds skeleton based on expected winners count
+      let expect = matches.length; // each match produces 1 winner
+      week += weekStep;
+      while (expect > 1 && guard < maxRounds) {
+        guard++;
+        const placeholders = Array(expect).fill(null);
+        const nm = roundLabel(expect * 2 > expect ? expect * 2 : expect * 2);
+        // better: expect winners from `expect` matches → next has expect teams if even
+        const nTeams = expect;
+        const rname = roundLabel(nTeams);
+        // matches with null teams filled later
+        const ms = [];
+        for (let i=0;i<nTeams;i+=2) {
+          ms.push({ week, comp, round: rname, home: null, away: null, played: false, gh: null, ga: null, pending: true });
+        }
+        rounds.push({ name: rname, week, matches: ms });
+        expect = ms.length;
+        week += weekStep;
+      }
+      break;
+    }
+  }
+  return rounds;
+}
+
+function fillNextRound(cup) {
+  // After a round completes, fill next round matches with winners in order
+  if (!cup || !cup.rounds) return;
+  for (let i=0;i<cup.rounds.length-1;i++) {
+    const cur = cup.rounds[i];
+    const nxt = cup.rounds[i+1];
+    if (!cur.matches.every(m => m.played || m.bye)) continue;
+    const wins = winnersFromMatches(cur.matches);
+    // pair into next matches
+    let wi = 0;
+    nxt.matches.forEach(m => {
+      if (m.home && m.away && !m.pending) { wi += 2; return; }
+      m.home = wins[wi++] || m.home;
+      m.away = wins[wi++] || m.away;
+      m.pending = !(m.home && m.away);
+      if (m.home && !m.away) { m.bye = true; m.played = true; m.gh = 3; m.ga = 0; }
+      if (!m.home && m.away) { m.home = m.away; m.away = null; m.bye = true; m.played = true; m.gh = 3; m.ga = 0; }
+    });
+  }
+}
+
+function syncCupFixturesToS() {
+  // Flatten cup matches into S.fixtures (non-league)
+  if (!S || !S.cups) return;
+  S.fixtures = (S.fixtures || []).filter(f => !f.comp || f.comp === "league");
+  Object.keys(S.cups).forEach(key => {
+    const cup = S.cups[key];
+    if (!cup || !cup.rounds) return;
+    cup.rounds.forEach(r => {
+      (r.matches || []).forEach(m => {
+        if (!m.home || (!m.away && !m.bye)) return;
+        if (m.pending && (!m.home || !m.away)) return;
+        S.fixtures.push({
+          week: m.week, home: m.home, away: m.away, played: !!m.played,
+          gh: m.gh, ga: m.ga, comp: cup.comp || key, round: m.round || r.name,
+          bye: !!m.bye, cupKey: key
+        });
+      });
+    });
+  });
+}
+
+function qualifyBRforContinental() {
+  // Prefer last season table if available; else rep/ovr of Serie A
+  const A = sortTable(S.tableA || []).map(r => r.id);
+  const B = sortTable(S.tableB || []).map(r => r.id);
+  let libBR = A.slice(0, 6);
+  let sudBR = A.slice(6, 12).concat(B.slice(0, 4));
+  // CDB champion gets Lib if not already
+  if (S.cups && S.cups.cdb && S.cups.cdb.champion) {
+    const ch = S.cups.cdb.champion;
+    if (!libBR.includes(ch)) {
+      sudBR = sudBR.filter(x => x !== ch);
+      libBR.push(ch);
+    }
+  }
+  // fill if short
+  const allA = (S.clubs || []).filter(c => c.serie === "A").sort((a,b)=>(b.rep||0)-(a.rep||0)).map(c=>c.id);
+  allA.forEach(id => {
+    if (libBR.length < 8 && !libBR.includes(id)) libBR.push(id);
+  });
+  const rest = (S.clubs || []).filter(c => !libBR.includes(c.id)).sort((a,b)=>(b.rep||0)-(a.rep||0)).map(c=>c.id);
+  rest.forEach(id => {
+    if (sudBR.length < 10 && !sudBR.includes(id) && !libBR.includes(id)) sudBR.push(id);
+  });
+  return { libBR: libBR.slice(0, 8), sudBR: sudBR.slice(0, 10) };
+}
+
+function buildEstaduais() {
+  const groups = {};
+  (S.clubs || []).forEach(c => {
+    const reg = REGION_MAP[c.state] || ("Região " + (c.state || "?"));
+    (groups[reg] = groups[reg] || []).push(c.id);
+  });
+  const cups = [];
+  Object.keys(groups).forEach(reg => {
+    let ids = groups[reg];
+    if (ids.length < 2) return; // need at least 2
+    // cap large paulista etc at 16 for playable KO
+    if (ids.length > 16) {
+      ids = ids.slice().sort((a,b) => {
+        const ca = clubByIdState(a), cb = clubByIdState(b);
+        return ((cb && cb.rep)||0) - ((ca && ca.rep)||0);
+      }).slice(0, 16);
+    }
+    const rounds = buildKnockoutTree(ids, 1, 1, "est", 6);
+    cups.push({
+      key: "est_" + reg.replace(/\s+/g,"_"),
+      comp: "est",
+      name: reg.startsWith("Copa") || reg.includes("Nordeste") || reg.includes("Norte") || reg.includes("Centro") || reg.includes("Sudeste")
+        ? ("Copa " + reg) : ("Campeonato " + reg),
+      region: reg,
+      rounds,
+      champion: null
+    });
+  });
+  return cups;
+}
+
+function buildCopaDoBrasil() {
+  // 64 teams: all A+B+C + best D by rep
+  const A = S.clubs.filter(c=>c.serie==="A").map(c=>c.id);
+  const B = S.clubs.filter(c=>c.serie==="B").map(c=>c.id);
+  const C = S.clubs.filter(c=>c.serie==="C").map(c=>c.id);
+  const D = S.clubs.filter(c=>c.serie==="D").slice().sort((a,b)=>(b.rep||0)-(a.rep||0)).map(c=>c.id);
+  let ids = A.concat(B, C);
+  D.forEach(id => { if (ids.length < 64) ids.push(id); });
+  ids = ids.slice(0, 64);
+  // CDB weeks: 3,7,11,15,19,23 (avoid overwriting est weeks 1-4 partially - est uses 1-4, cdb starts week 5+)
+  const rounds = buildKnockoutTree(ids, 5, 4, "cdb", 8);
+  return { key:"cdb", comp:"cdb", name:"Copa do Brasil", rounds, champion:null };
+}
+
+function buildContinental(comp, brIds, nTotal, startWeek, step) {
+  const needIntl = Math.max(0, nTotal - brIds.length);
+  const pool = shuffle(intlPool());
+  // ensure squads
+  pool.forEach(ensureClubReady);
+  // store on S.intlClubs unique
+  if (!S.intlClubs) S.intlClubs = [];
+  pool.forEach(c => {
+    if (!S.intlClubs.find(x => x.id === c.id)) S.intlClubs.push(c);
+  });
+  const intlIds = pool.slice(0, needIntl).map(c => c.id);
+  const ids = shuffle(brIds.concat(intlIds)).slice(0, nTotal);
+  const rounds = buildKnockoutTree(ids, startWeek, step, comp, 8);
+  return {
+    key: comp, comp, name: COMP_META[comp].name, rounds, champion: null,
+    brIds: brIds.slice(), intlIds
+  };
+}
+
+
+function maxCupWeek() {
+  let m = 0;
+  if (!S || !S.cups) return m;
+  Object.values(S.cups).forEach(cup => {
+    (cup.rounds || []).forEach(r => {
+      m = Math.max(m, r.week || 0);
+      (r.matches || []).forEach(mt => { m = Math.max(m, mt.week || 0); });
+    });
+  });
+  return m;
+}
+
+function refreshMaxWeeks() {
+  if (!S) return;
+  const league = maxWeeksForSerie((meClub() && meClub().serie) || "D");
+  S.maxWeeks = Math.max(league, maxCupWeek() || 0, S.maxWeeks || 0);
+}
+
+function buildAllCups() {
+  S.intlClubs = intlPool();
+  S.intlClubs.forEach(ensureClubReady);
+  const estList = buildEstaduais();
+  S.cups = {};
+  estList.forEach(c => { S.cups[c.key] = c; });
+  S.cups.cdb = buildCopaDoBrasil();
+  const q = qualifyBRforContinental();
+  S.cups.lib = buildContinental("lib", q.libBR, 32, 8, 5);
+  S.cups.sud = buildContinental("sud", q.sudBR, 32, 9, 5);
+  S.cupSummary = {
+    libBR: q.libBR, sudBR: q.sudBR,
+    note: "Clubes internacionais só entram em Lib/SUD — não jogáveis, sem tabela."
+  };
+  syncCupFixturesToS();
+  refreshMaxWeeks();
+  // inbox
+  const myEst = Object.values(S.cups).find(c => c.comp==="est" && c.rounds && c.rounds[0] && c.rounds[0].matches.some(m => m.home===S.clubId || m.away===S.clubId));
+  pushNews("Calendário de copas",
+    "Estaduais/Regionais · Copa do Brasil · Libertadores · Sul-Americana montados. " +
+    (myEst ? ("Seu estadual: " + myEst.name + ". ") : "") +
+    "Clubes da América (River, Boca, América-MEX…) só preenchem Lib/SUD.",
+    "info");
+}
+
+function playerCups() {
+  if (!S || !S.cups) return [];
+  return Object.values(S.cups).filter(c =>
+    c.rounds && c.rounds.some(r => r.matches.some(m => m.home===S.clubId || m.away===S.clubId))
+  );
+}
+
+function humanFixturesThisWeek() {
+  if (!S) return [];
+  const w = S.week;
+  return (S.fixtures || []).filter(f =>
+    f.week === w && !f.played && !f.bye && f.home && f.away &&
+    (f.home === S.clubId || f.away === S.clubId)
+  ).sort((a,b) => {
+    const prio = { lib:0, sud:1, cdb:2, est:3, league:4 };
+    return (prio[a.comp||"league"]||9) - (prio[b.comp||"league"]||9);
+  });
+}
+
+function resolveCupMatchResult(f, gh, ga) {
+  if (!f || !f.cupKey || !S.cups[f.cupKey]) return;
+  const cup = S.cups[f.cupKey];
+  cup.rounds.forEach(r => {
+    r.matches.forEach(m => {
+      if (m.week===f.week && m.home===f.home && m.away===f.away && (m.round===f.round || !f.round)) {
+        m.played = true; m.gh = gh; m.ga = ga;
+      }
+    });
+  });
+  fillNextRound(cup);
+  // champion?
+  const last = cup.rounds[cup.rounds.length-1];
+  if (last && last.matches.length === 1 && last.matches[0].played) {
+    const m = last.matches[0];
+    cup.champion = m.gh >= m.ga ? m.home : m.away;
+    if (cup.champion === S.clubId) {
+      const prize = cup.comp==="lib" ? 8e6 : cup.comp==="sud" ? 3.5e6 : cup.comp==="cdb" ? 2.5e6 : 4e5;
+      S.money += prize;
+      S.reputation = clamp((S.reputation||0) + (cup.comp==="lib"?10:cup.comp==="cdb"?7:cup.comp==="sud"?6:3), 0, 100);
+      pushNews("Campeão!", "O " + meClub().name + " fatura a " + cup.name + "! Prêmio " + fmtM(prize) + ".", "torcida");
+      toast("🏆 CAMPEÃO: " + cup.name + "!", 4000);
+    } else if (cup.champion) {
+      const ch = clubByIdAny(cup.champion);
+      pushNews(cup.name, (ch ? ch.name : cup.champion) + " é campeão.", "info");
+    }
+  }
+  syncCupFixturesToS();
+}
+
+function simAICupAndLeagueWeek() {
+  // Simulate all non-human fixtures this week (league + cups)
+  (S.fixtures || []).filter(f => f.week === S.week && !f.played && !f.bye && f.home && f.away).forEach(f => {
+    if (f.home === S.clubId || f.away === S.clubId) return;
+    // ensure intl clubs ready
+    ensureClubReady(clubByIdAny(f.home));
+    ensureClubReady(clubByIdAny(f.away));
+    const M = simAIMatch(f.home, f.away, { skipTable: f.comp && f.comp !== "league", comp: f.comp || "league" });
+    // simAIMatch already marks fixture via finishMatchToTable — for cups need resolve
+    if (f.comp && f.comp !== "league") {
+      resolveCupMatchResult(f, M.gh, M.ga);
+    }
+  });
+}
+
 // ---------- career ----------
 function newCareer(clubId, managerName) {
   const clubs = deep(DATA.clubs);
@@ -626,7 +1039,10 @@ function newCareer(clubId, managerName) {
     tableD: tables.tableD,
     fixtures: makeFixtures(clubs),
     results: [],
-    inbox: [{ t: 0, title: "Boas-vindas", body: (managerName || "Técnico") + ", bem-vindo ao " + me.name + " (Série " + me.serie + ")! Temporada com " + weeks + " rodadas · dificuldade " + dcfg.label + ". Suba com resultados; A/B exigem reputação alta." }],
+    cups: {},
+    intlClubs: [],
+    cupSummary: null,
+    inbox: [{ t: 0, title: "Boas-vindas", body: (managerName || "Técnico") + ", bem-vindo ao " + me.name + " (Série " + me.serie + ")! Temporada com " + weeks + " rodadas de liga + copas · dificuldade " + dcfg.label + ". Suba com resultados; A/B exigem reputação alta." }],
     transferWindow: true,
     history: [],
     reputation: startRep,
@@ -642,6 +1058,7 @@ function newCareer(clubId, managerName) {
   ensureFreeAgents(true);
   assignBoardObjectives(me);
   pushNews("Boas-vindas", "A torcida do " + me.name + " espera comprometimento. Moral inicial 55.", "torcida");
+  buildAllCups();
   save();
 }
 
@@ -662,7 +1079,7 @@ function makeFixtures(clubs) {
           if (!home || !away) continue;
           if (turn===1) { const t=home; home=away; away=t; }
           if ((r+i)%3===0 && turn===0) { const t=home; home=away; away=t; }
-          fix.push({week, serie, home, away, played:false, gh:null, ga:null});
+          fix.push({week, serie, home, away, played:false, gh:null, ga:null, comp:"league", round:"Rodada"});
         }
         arr = [arr[0], arr[n-1], ...arr.slice(1,n-1)];
       }
@@ -697,6 +1114,7 @@ function save() {
 function load() {
   try {
     let raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) raw = localStorage.getItem(typeof SAVE_KEY_V11!=="undefined"?SAVE_KEY_V11:null);
     if (!raw) raw = localStorage.getItem(typeof SAVE_KEY_V9!=="undefined"?SAVE_KEY_V9:null);
     if (!raw) raw = localStorage.getItem(SAVE_KEY_OLD);
     if (!raw) return false;
@@ -733,6 +1151,10 @@ function load() {
     S.difficulty = S.difficulty || "normal";
     ui.difficulty = S.difficulty;
     S.freeAgents = S.freeAgents || [];
+    S.intlClubs = S.intlClubs || intlPool();
+    (S.intlClubs||[]).forEach(ensureClubReady);
+    if (!S.cups || !Object.keys(S.cups).length) { try { buildAllCups(); } catch(e) { console.warn(e); } }
+    else { syncCupFixturesToS(); }
     S.objectives = S.objectives || [];
     S.seasonWins = S.seasonWins || 0;
     S.morale = S.morale != null ? S.morale : 55;
@@ -752,8 +1174,9 @@ function load() {
 
 // ---------- match engine ----------
 function simMatch(homeId, awayId, opts={}) {
-  const home = S.clubs.find(c=>c.id===homeId);
-  const away = S.clubs.find(c=>c.id===awayId);
+  const home = ensureClubReady(clubByIdAny(homeId) || S.clubs.find(c=>c.id===homeId));
+  const away = ensureClubReady(clubByIdAny(awayId) || S.clubs.find(c=>c.id===awayId));
+  if (!home || !away) { toast("Clube da partida não encontrado"); return null; }
   const hForm = opts.hForm || home.formation || "4-3-3";
   const aForm = opts.aForm || away.formation || "4-3-3";
   const hMent = opts.hMent || home.mentality || "normal";
@@ -809,7 +1232,10 @@ function simMatch(homeId, awayId, opts={}) {
     cmdCD: {}, // type -> minute available
     subsLeft: 3,
     flash: null, // {t, kind}
-    bobT: 0
+    bobT: 0,
+    comp: opts.comp || "league",
+    cupKey: opts.cupKey || null,
+    round: opts.round || null
   };
 }
 
@@ -980,7 +1406,9 @@ function applyFatigue(club, xi, amt) {
 }
 
 function finishMatchToTable(M) {
+  const isLeague = !M.comp || M.comp === "league";
   const mark = (id, gh, ga) => {
+    if (!isLeague) return;
     const row = tableRow(id); if (!row) return;
     row.pj++; row.gp += gh; row.gc += ga;
     if (gh>ga) { row.v++; row.pts += 3; }
@@ -1005,9 +1433,25 @@ function finishMatchToTable(M) {
     if (M.away.id === S.clubId && M.ga > M.gh) S.seasonWins = (S.seasonWins || 0) + 1;
   }
 
-  S.results.push({week:S.week, home:M.home.id, away:M.away.id, gh:M.gh, ga:M.ga});
-  const f = S.fixtures.find(x => x.week===S.week && x.home===M.home.id && x.away===M.away.id);
+  S.results.push({week:S.week, home:M.home.id, away:M.away.id, gh:M.gh, ga:M.ga, comp: M.comp || "league"});
+  const f = S.fixtures.find(x => x.week===S.week && x.home===M.home.id && x.away===M.away.id && (!M.comp || !x.comp || x.comp===M.comp));
   if (f) { f.played=true; f.gh=M.gh; f.ga=M.ga; }
+  if (f && f.comp && f.comp !== "league") resolveCupMatchResult(f, M.gh, M.ga);
+  else if (M.comp && M.comp !== "league") {
+    const fake = { week:S.week, home:M.home.id, away:M.away.id, comp:M.comp, cupKey: M.cupKey, round:M.round };
+    // try find cupKey
+    if (!fake.cupKey && S.cups) {
+      Object.keys(S.cups).forEach(k => {
+        const cup = S.cups[k];
+        if ((cup.comp||k) === M.comp) {
+          (cup.rounds||[]).forEach(r => (r.matches||[]).forEach(m => {
+            if (m.home===fake.home && m.away===fake.away && m.week===S.week) fake.cupKey = k;
+          }));
+        }
+      });
+    }
+    if (fake.cupKey) resolveCupMatchResult(fake, M.gh, M.ga);
+  }
 
   // Lesões leves + moral da torcida (só se jogo do técnico)
   const injList = rollMatchInjuries(M);
@@ -1028,7 +1472,10 @@ function finishMatchToTable(M) {
 }
 
 function simAIMatch(homeId, awayId, opts={}) {
+  ensureClubReady(clubByIdAny(homeId)); ensureClubReady(clubByIdAny(awayId));
   const M = simMatch(homeId, awayId, Object.assign({ live: false }, opts));
+  if (opts.comp) { M.comp = opts.comp; M.cupKey = opts.cupKey; M.round = opts.round; }
+  if (opts.skipTable) M.comp = opts.comp || "cup";
   function pois(L) {
     L = clamp(L, 0.05, 5);
     let k=0,p=Math.exp(-L),s=p,u=Math.random();
@@ -1051,14 +1498,14 @@ function simAIMatch(homeId, awayId, opts={}) {
 }
 
 function myFixtureThisWeek() {
-  return S.fixtures.find(f => f.week===S.week && !f.played && (f.home===S.clubId || f.away===S.clubId));
+  const list = humanFixturesThisWeek();
+  return list[0] || null;
 }
 
 function advanceWeek() {
-  S.fixtures.filter(f => f.week === S.week && !f.played).forEach(f => {
-    if (f.home === S.clubId || f.away === S.clubId) return;
-    simAIMatch(f.home, f.away);
-  });
+  // Simula jogos de IA (liga + copas); partidas do técnico devem já ter sido jogadas
+  (S.fixtures || []).filter(f => f.week === S.week && f.bye && !f.played).forEach(f => { f.played = true; });
+  simAICupAndLeagueWeek();
   S.clubs.forEach(c => c.squad.forEach(p => {
     if (isInjured(p)) {
       p.energy = Math.round(clamp((p.energy || 50) + ri(4, 10), 30, 85));
@@ -1167,6 +1614,8 @@ function endSeason() {
     assignBoardObjectives(meNow);
     ensureFreeAgents(true);
   }
+  // Nova temporada: recria copas (BR classificados pela tabela + intl aleatórios)
+  buildAllCups();
   save();
 }
 
@@ -1418,16 +1867,19 @@ function viewHome(me, pos, row) {
     const home = clubByIdState(fix.home), away = clubByIdState(fix.away);
     const isHome = fix.home===me.id;
     const host = isHome ? me : away;
+    const meta = COMP_META[fix.comp || "league"] || COMP_META.league;
+    const more = humanFixturesThisWeek().length;
     next = `
+      <div class="comp-pill" style="background:${meta.color}22;color:${meta.color};border:1px solid ${meta.color}55">${meta.short} · ${meta.name}${fix.round ? " · " + fix.round : ""}</div>
       <div class="next-match">
-        <div class="side"><img src="${home.logo}"><b>${home.short}</b></div>
+        <div class="side"><img src="${home.logo}" onerror="this.style.opacity=.3"><b>${home.short}</b>${home.intl?'<div class="muted" style="font-size:9px">'+ (home.country||"") +'</div>':''}</div>
         <div class="mid">
-          <div class="date">Rodada ${S.week} · ${isHome?"Casa":"Fora"}</div>
+          <div class="date">Semana ${S.week} · ${isHome?"Casa":"Fora"}${more>1?' · +'+(more-1)+' jogo(s)':''}</div>
           <div class="vs">VS</div>
-          <div class="place">${host.stadium} · ${(host.capacity||0).toLocaleString("pt-BR")}</div>
-          <div class="muted" style="margin-top:4px">${tempFor(host)}</div>
+          <div class="place">${(host && host.stadium) ? host.stadium : "Estádio"} · ${((host && host.capacity)||0).toLocaleString("pt-BR")}</div>
+          <div class="muted" style="margin-top:4px">${host ? tempFor(host) : ""}</div>
         </div>
-        <div class="side"><img src="${away.logo}"><b>${away.short}</b></div>
+        <div class="side"><img src="${away.logo}" onerror="this.style.opacity=.3"><b>${away.short}</b>${away.intl?'<div class="muted" style="font-size:9px">'+ (away.country||"") +'</div>':''}</div>
       </div>
       <div style="margin-top:10px;display:flex;gap:8px">
         <button class="primary" id="btnPlayMatch" style="flex:1">Preparar partida</button>
@@ -1587,6 +2039,26 @@ function viewTactics(me) {
 function viewTable(me) {
   const tab = sortTable(myTable());
   const n = tab.length;
+  let cupsHTML = "";
+  if (S.cups) {
+    const mine = playerCups();
+    const allCups = Object.values(S.cups);
+    cupsHTML = `<div class="card" style="margin-top:10px"><h3>Copas · sua campanha</h3>
+      <div class="muted" style="margin-bottom:8px">Internacionais (River, Boca, América-MEX…) só entram em Lib/SUD — sem tabela nem carreira neles.</div>
+      ${mine.length ? mine.map(cup => {
+        const last = [...(cup.rounds||[])].reverse().find(r => r.matches.some(m => m.home===S.clubId || m.away===S.clubId));
+        const myM = last ? last.matches.find(m => m.home===S.clubId || m.away===S.clubId) : null;
+        const st = cup.champion === S.clubId ? "🏆 Campeão" : cup.champion ? ("Campeão: " + ((clubByIdAny(cup.champion)||{}).short || cup.champion)) : (myM && myM.played ? (myM.gh>myM.ga|| (myM.home===S.clubId && myM.bye) ? "Avançou" : "Eliminado") : (last ? last.name : "—"));
+        return `<div class="news-item" style="margin-bottom:6px"><span class="ic">🏆</span><div>
+          <div class="nt">${cup.name}</div>
+          <div class="nb">${st}${myM && !myM.played && myM.away ? " · Próximo: vs " + ((clubByIdAny(myM.home===S.clubId?myM.away:myM.home)||{}).short||"?") + " (sem. " + myM.week + ")" : ""}</div>
+        </div></div>`;
+      }).join("") : `<div class="muted">Sem copa ativa nesta temporada (raro).</div>`}
+      <div class="hr"></div>
+      <div class="muted" style="font-size:11px">Lib BR: ${(S.cupSummary && S.cupSummary.libBR || []).map(id=>((clubByIdState(id)||{}).short||id)).join(", ") || "—"}</div>
+      <div class="muted" style="font-size:11px">SUD BR: ${(S.cupSummary && S.cupSummary.sudBR || []).map(id=>((clubByIdState(id)||{}).short||id)).join(", ") || "—"}</div>
+    </div>`;
+  }
   return `<div class="card"><h3>Classificação · Série ${me.serie}</h3>
     <table class="tbl"><thead><tr><th>#</th><th class="club">Clube</th><th>P</th><th>J</th><th>V</th><th>SG</th></tr></thead>
     <tbody>${tab.map((r,i)=>{
@@ -1597,7 +2069,7 @@ function viewTable(me) {
         <td><b>${r.pts}</b></td><td>${r.pj}</td><td>${r.v}</td><td>${r.gp-r.gc}</td></tr>`;
     }).join("")}</tbody></table>
     <div class="muted" style="margin-top:8px">${zoneLegend(me.serie)}</div>
-  </div>`;
+  </div>${cupsHTML}`;
 }
 
 function viewMarket(me) {
@@ -1711,12 +2183,13 @@ function bindHub(me) {
   if (sim) sim.onclick = () => {
     const f = myFixtureThisWeek(); if (!f) return;
     const humanSide = f.home === S.clubId ? "home" : "away";
-    const M = simAIMatch(f.home, f.away, { humanSide });
+    const M = simAIMatch(f.home, f.away, { humanSide, comp: f.comp || "league", cupKey: f.cupKey, round: f.round, skipTable: f.comp && f.comp !== "league" });
+    M.comp = f.comp || "league"; M.cupKey = f.cupKey; M.round = f.round;
     showPostMatch(M);
   };
   const adv = $("#btnAdvance");
   if (adv) adv.onclick = () => {
-    if (myFixtureThisWeek()) { toast("Jogue ou simule sua partida antes."); return; }
+    if (humanFixturesThisWeek().length) { toast("Jogue ou simule todas as suas partidas da semana (liga/copa)."); return; }
     advanceWeek(); toast(`Rodada ${S.week}`); renderHub();
   };
   const saveB = $("#btnSave");
@@ -1842,6 +2315,7 @@ function bindHub(me) {
 
 // ---------- PREMATCH ----------
 function openPrematch() {
+  // v12: carrega comp da fixture
   const f = myFixtureThisWeek(); if (!f) return;
   const me = meClub();
   const home = clubByIdState(f.home), away = clubByIdState(f.away);
@@ -1855,7 +2329,8 @@ function openPrematch() {
   const A = sectorPower(opp, opp.formation||"4-3-3", autoXI(opp), opp.mentality||"normal");
 
   showScreen("prematchScreen");
-  $("#preMeta").textContent = `Rodada ${S.week} · ${host.stadium}`;
+  const _cm = COMP_META[f.comp||"league"]||COMP_META.league;
+  $("#preMeta").textContent = `${_cm.short}${f.round?" · "+f.round:""} · Semana ${S.week} · ${host.stadium||""}`;
   $("#preBody").innerHTML = `
     <div class="vs-row">
       <div style="text-align:center"><img src="${home.logo}"><div><b>${home.short}</b></div></div>
@@ -1907,7 +2382,8 @@ function startLiveMatch() {
     hMent: f.home===me.id ? (me.mentality||"normal") : "normal",
     aMent: f.away===me.id ? (me.mentality||"normal") : "normal",
     hXI: f.home===me.id ? me.xi.slice() : autoXI(clubByIdState(f.home)),
-    aXI: f.away===me.id ? me.xi.slice() : autoXI(clubByIdState(f.away))
+    aXI: f.away===me.id ? me.xi.slice() : autoXI(clubByIdState(f.away)),
+    comp: f.comp || "league", cupKey: f.cupKey, round: f.round
   });
   match.userCmd = null;
   match.speed = 1;
@@ -2055,7 +2531,7 @@ function showPostMatch(M) {
 }
 
 function onMatchEnd() {
-  finishMatchToTable(match);
+  if (match && !match.comp) { const fx=myFixtureThisWeek(); if(fx){ match.comp=fx.comp||"league"; match.cupKey=fx.cupKey; match.round=fx.round; } } finishMatchToTable(match);
   showPostMatch(match);
 }
 

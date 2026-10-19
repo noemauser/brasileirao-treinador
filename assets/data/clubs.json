@@ -1,5 +1,5 @@
 {
-  "version": 11.1,
+  "version": 12.0,
   "phase": "audit-clean",
   "season_year": 2026,
   "totals": {
@@ -1045,5 +1045,5 @@
       "players": 24
     }
   ],
-  "notes": "Pacote limpo v11.1 — faces só do elenco, logos 92/92"
+  "notes": "v12 copas + intl NPC"
 }
